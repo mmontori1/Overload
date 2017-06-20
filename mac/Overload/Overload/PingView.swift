@@ -14,5 +14,4 @@ class PingView: NSView {
     @IBOutlet weak var PingText: NSTextField!
     @IBOutlet weak var Latency: NSTextField!
 
-    
 }

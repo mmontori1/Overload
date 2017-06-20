@@ -13,6 +13,7 @@ import PlainPing
 class StatusMenuController: NSObject {
     @IBOutlet weak var statusMenu: NSMenu!
     @IBOutlet weak var pingView: PingView!
+    @IBOutlet weak var togglePingMenuItem: NSMenuItem!
     
     var pingMenuItem: NSMenuItem!
     let statusItem = NSStatusBar.system().statusItem(withLength: NSVariableStatusItemLength)
@@ -29,33 +30,39 @@ class StatusMenuController: NSObject {
             if let latency = timeElapsed {
                 print("wow")
                 self.pingView.Latency.stringValue = String(format: "%.2fms", latency)
+//                   self.statusItem.title = "Ping: " + String(format: "%.2fms", latency)
             }
             if let error = error {
                 print("error: \(error.localizedDescription)")
             }
         })
+        
     }
     
     func togglePinging(){
         if(!isPinging){
             isPinging = true;
+            togglePingMenuItem.title = "Stop"
             startPing()
         }
         else{
             isPinging = false;
+            togglePingMenuItem.title = "Start"
             self.pingView.Latency.stringValue = "---"
+//            self.statusItem.title = "Ping: ---"
             timer.invalidate()
         }
     }
     
     override func awakeFromNib() {
         let icon = NSImage(named: "statusIcon")
-        // icon?.isTemplate = true 
+        // icon?.isTemplate = true
         // best for dark mode
         pingMenuItem = statusMenu.item(withTitle: "Item")
         pingView.Latency.stringValue = "---"
         pingMenuItem.view = pingView
         statusItem.image = icon
+//        statusItem.title = "Ping: ---"
         statusItem.menu = statusMenu
     }
     
