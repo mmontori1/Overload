@@ -27,7 +27,7 @@
                 <menuItem title="Start" id="LON-sr-6ja" userLabel="Start/Stop">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
-                        <action selector="startClicked:" target="ZAf-co-Jvt" id="Bg6-L0-HCF"/>
+                        <action selector="toggleClicked:" target="ZAf-co-Jvt" id="Gbq-tN-sMc"/>
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="ZBD-7v-aY4"/>
@@ -49,34 +49,37 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MBI-eg-arm">
-                    <rect key="frame" x="33" y="10" width="39" height="17"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <rect key="frame" x="32" y="10" width="39" height="18"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Ping: " id="VsH-wD-Pch">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DH8-Bv-dhz">
-                    <rect key="frame" x="4" y="5" width="27" height="27"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="K02-G1-xWU"/>
-                </imageView>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vi5-J9-VUq" userLabel="Latency">
-                    <rect key="frame" x="69" y="10" width="71" height="17"/>
+                    <rect key="frame" x="69" y="11" width="71" height="17"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" id="0YR-ek-DaR">
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="---" id="0YR-ek-DaR">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
+                <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2YX-f0-fR4">
+                    <rect key="frame" x="11" y="11" width="15" height="15"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                    <imageCell key="cell" selectable="YES" editable="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="NSStatusNone" id="Ksw-cf-7vS"/>
+                </imageView>
             </subviews>
             <connections>
                 <outlet property="Latency" destination="Vi5-J9-VUq" id="TyC-gx-aL6"/>
-                <outlet property="imageView" destination="DH8-Bv-dhz" id="uXk-M3-mku"/>
+                <outlet property="latencyStatus" destination="2YX-f0-fR4" id="Han-zm-Fy2"/>
             </connections>
             <point key="canvasLocation" x="-66" y="292.5"/>
         </customView>
     </objects>
+    <resources>
+        <image name="NSStatusNone" width="16" height="16"/>
+    </resources>
 </document>

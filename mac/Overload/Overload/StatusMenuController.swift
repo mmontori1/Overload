@@ -22,19 +22,19 @@ class StatusMenuController: NSObject {
     var isPinging = false
     
     func startPing() {
-        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: (#selector(self.ping)), userInfo: nil, repeats: true)
-        RunLoop.main.add(timer, forMode: RunLoopMode.eventTrackingRunLoopMode)
+        self.timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: (#selector(ping)), userInfo: nil, repeats: true)
+        RunLoop.main.add(timer, forMode: RunLoopMode.defaultRunLoopMode)
     }
     
     func ping() {
         PlainPing.ping("104.160.131.1", withTimeout: 1.0, completionBlock: { (timeElapsed:Double?, error:Error?) in
             if let latency = timeElapsed {
                 print(String(format: "%.2fms", latency))
-                self.pingView.Latency.stringValue = String(format: "%.2fms", latency)
+                self.handlePingView(latency: latency)
             }
             if let error = error {
                 print("error: \(error.localizedDescription)")
-                self.pingView.Latency.stringValue = "error"
+                self.handlePingError()
             }
         })
         
@@ -49,8 +49,34 @@ class StatusMenuController: NSObject {
         else{
             isPinging = false;
             togglePingMenuItem.title = "Start"
-            self.pingView.Latency.stringValue = "---"
             timer.invalidate()
+            handlePingDefault()
+        }
+    }
+    
+    func handlePingView(latency: Double){
+        self.pingView.Latency.stringValue = String(format: "%.2fms", latency)
+        if 0 < latency && latency < 100 {
+            self.pingView.LatencyStatus.image = NSImage(named: NSImageNameStatusAvailable)
+        }
+        else if 100 <= latency && latency < 250 {
+            self.pingView.LatencyStatus.image = NSImage(named: NSImageNameStatusPartiallyAvailable)
+        }
+        else if 250 <= latency {
+            self.pingView.LatencyStatus.image = NSImage(named: NSImageNameStatusUnavailable)
+        }
+    }
+    
+    func handlePingError(){
+        self.pingView.Latency.stringValue = "error"
+        self.pingView.LatencyStatus.image = NSImage(named: NSImageNameStatusNone)
+    }
+    
+    func handlePingDefault(){
+        let delay = DispatchTime.now() + 1
+        DispatchQueue.main.asyncAfter(deadline: delay) {
+            self.pingView.Latency.stringValue = "---"
+            self.pingView.LatencyStatus.image = NSImage(named: NSImageNameStatusNone)
         }
     }
     
@@ -60,12 +86,13 @@ class StatusMenuController: NSObject {
         // best for dark mode
         pingMenuItem = statusMenu.item(withTitle: "Item")
         pingView.Latency.stringValue = "---"
+        pingView.LatencyStatus.image = NSImage(named: NSImageNameStatusNone)
         pingMenuItem.view = pingView
         statusItem.image = icon
         statusItem.menu = statusMenu
     }
     
-    @IBAction func startClicked(_ sender: NSMenuItem) {
+    @IBAction func toggleClicked(_ sender: Any) {
         togglePinging()
     }
     
