@@ -42,7 +42,7 @@ namespace Overload
         }
 
         // Pings server every second for a minute
-        public void Ping()
+        public async Task Ping()
         {
             string address, title;
             if (game == 0)
@@ -57,7 +57,7 @@ namespace Overload
             
             PingReply reply;
             Ping pinger = new Ping();
-            int iter = 1;
+            int iter = 60;
             int average = 0;
             int sum = 0;
 
@@ -70,6 +70,8 @@ namespace Overload
                     if (reply.Status == IPStatus.Success)
                     {
                         sum += Convert.ToInt32(reply.RoundtripTime);
+                        await Task.Delay(1000);
+                        trayIcon.Text = "iter: " + i.ToString();
                     }
                 }
             }
