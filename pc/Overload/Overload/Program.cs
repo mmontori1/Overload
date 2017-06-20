@@ -16,7 +16,10 @@ namespace Overload
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+
+            myApplicationContext myApp = new myApplicationContext();
+            myApp.Display();
+            Application.Run();
         }
     }
 }
