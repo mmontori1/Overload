@@ -1,0 +1,6 @@
+framework module Pods_Overload {
+  umbrella header "Pods-Overload-umbrella.h"
+
+  export *
+  module * { export * }
+}

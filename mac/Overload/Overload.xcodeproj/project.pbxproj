@@ -11,6 +11,8 @@
 		016C94CD1EF7877D00B477B2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 016C94CC1EF7877D00B477B2 /* Assets.xcassets */; };
 		016C94D01EF7877D00B477B2 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 016C94CE1EF7877D00B477B2 /* MainMenu.xib */; };
 		016C94D81EF7891C00B477B2 /* StatusMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016C94D71EF7891C00B477B2 /* StatusMenuController.swift */; };
+		01E226F51EF8B06C00ECFE1A /* PingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E226F41EF8B06C00ECFE1A /* PingView.swift */; };
+		77EA4995E77B2699131A3651 /* Pods_Overload.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEA5027A50997943D089D0FB /* Pods_Overload.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +22,10 @@
 		016C94CF1EF7877D00B477B2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		016C94D11EF7877D00B477B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		016C94D71EF7891C00B477B2 /* StatusMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusMenuController.swift; sourceTree = "<group>"; };
+		01E226F41EF8B06C00ECFE1A /* PingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PingView.swift; sourceTree = "<group>"; };
+		A9AC5AA141B4EE02680A7C40 /* Pods-Overload.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Overload.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Overload/Pods-Overload.debug.xcconfig"; sourceTree = "<group>"; };
+		AEA5027A50997943D089D0FB /* Pods_Overload.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Overload.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F801BF1A943F2F3A6BB967D4 /* Pods-Overload.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Overload.release.xcconfig"; path = "Pods/Target Support Files/Pods-Overload/Pods-Overload.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -27,6 +33,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				77EA4995E77B2699131A3651 /* Pods_Overload.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -38,6 +45,8 @@
 			children = (
 				016C94C91EF7877D00B477B2 /* Overload */,
 				016C94C81EF7877D00B477B2 /* Products */,
+				779E8F5805F629A05EBFB44D /* Pods */,
+				2E3DE340CA186F6B623C7BDE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,9 +65,27 @@
 				016C94D71EF7891C00B477B2 /* StatusMenuController.swift */,
 				016C94CC1EF7877D00B477B2 /* Assets.xcassets */,
 				016C94CE1EF7877D00B477B2 /* MainMenu.xib */,
+				01E226F41EF8B06C00ECFE1A /* PingView.swift */,
 				016C94D11EF7877D00B477B2 /* Info.plist */,
 			);
 			path = Overload;
+			sourceTree = "<group>";
+		};
+		2E3DE340CA186F6B623C7BDE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AEA5027A50997943D089D0FB /* Pods_Overload.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		779E8F5805F629A05EBFB44D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A9AC5AA141B4EE02680A7C40 /* Pods-Overload.debug.xcconfig */,
+				F801BF1A943F2F3A6BB967D4 /* Pods-Overload.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -68,9 +95,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 016C94D41EF7877D00B477B2 /* Build configuration list for PBXNativeTarget "Overload" */;
 			buildPhases = (
+				5A91E06ABA63C602D0DE9FFF /* [CP] Check Pods Manifest.lock */,
 				016C94C31EF7877D00B477B2 /* Sources */,
 				016C94C41EF7877D00B477B2 /* Frameworks */,
 				016C94C51EF7877D00B477B2 /* Resources */,
+				BBBCBAC1DA4B9D1B2901E908 /* [CP] Embed Pods Frameworks */,
+				B0125094A40C91A9FD9080F3 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -127,11 +157,60 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		5A91E06ABA63C602D0DE9FFF /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		B0125094A40C91A9FD9080F3 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Overload/Pods-Overload-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BBBCBAC1DA4B9D1B2901E908 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Overload/Pods-Overload-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		016C94C31EF7877D00B477B2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				01E226F51EF8B06C00ECFE1A /* PingView.swift in Sources */,
 				016C94D81EF7891C00B477B2 /* StatusMenuController.swift in Sources */,
 				016C94CB1EF7877D00B477B2 /* AppDelegate.swift in Sources */,
 			);
@@ -243,6 +322,7 @@
 		};
 		016C94D51EF7877D00B477B2 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A9AC5AA141B4EE02680A7C40 /* Pods-Overload.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -256,6 +336,7 @@
 		};
 		016C94D61EF7877D00B477B2 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F801BF1A943F2F3A6BB967D4 /* Pods-Overload.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -286,6 +367,7 @@
 				016C94D61EF7877D00B477B2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
