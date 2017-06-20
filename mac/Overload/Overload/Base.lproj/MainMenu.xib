@@ -17,6 +17,7 @@
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
         <customObject id="ZAf-co-Jvt" customClass="StatusMenuController" customModule="Overload" customModuleProvider="target">
             <connections>
+                <outlet property="pingView" destination="dDt-1K-0Li" id="ivT-XJ-wx8"/>
                 <outlet property="statusMenu" destination="VLm-uB-yss" id="Zgr-Gy-kgL"/>
             </connections>
         </customObject>

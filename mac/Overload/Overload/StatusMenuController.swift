@@ -12,6 +12,11 @@ import PlainPing
 
 class StatusMenuController: NSObject {
     @IBOutlet weak var statusMenu: NSMenu!
+    @IBOutlet weak var pingView: PingView!
+    var pingMenuItem: NSMenuItem!
+    struct Ping {
+        var latency: Float
+    }
 
     let statusItem = NSStatusBar.system().statusItem(withLength: NSVariableStatusItemLength)
     
@@ -23,7 +28,7 @@ class StatusMenuController: NSObject {
     }
     
     func ping() {
-        PlainPing.ping("104.160.131.1", withTimeout: 1.0, completionBlock: { (timeElapsed:Double?, error:Error?) in
+        PlainPing.ping("104.160.131.1", withTimeout: 2.0, completionBlock: { (timeElapsed:Double?, error:Error?) in
             if let latency = timeElapsed {
                 print("latency (ms): \(latency)")
             }
@@ -38,9 +43,12 @@ class StatusMenuController: NSObject {
         // icon?.isTemplate = true 
         // best for dark mode
         statusItem.image = icon
-        statusItem.menu = statusMenu
+        let current = Ping(latency: 5.0)
+        statusMenu.item(withTitle: "current")
+        pingMenuItem.view = pingView
     }
     
+    //change to toggle ping
     @IBAction func startClicked(_ sender: NSMenuItem) {
         if(!isPinging){
             startPing()
