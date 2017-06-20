@@ -57,17 +57,25 @@ class StatusMenuController: NSObject {
     func handlePingView(latency: Double){
         self.pingView.Latency.stringValue = String(format: "%.2fms", latency)
         if 0 < latency && latency < 100 {
+            let green = NSImage(named: "greenSub")
+            self.statusItem.image = green
             self.pingView.LatencyStatus.image = NSImage(named: NSImageNameStatusAvailable)
         }
         else if 100 <= latency && latency < 250 {
+            let yellow = NSImage(named: "yellowSub")
+            self.statusItem.image = yellow
             self.pingView.LatencyStatus.image = NSImage(named: NSImageNameStatusPartiallyAvailable)
         }
         else if 250 <= latency {
+            let red = NSImage(named: "redSub")
+            self.statusItem.image = red
             self.pingView.LatencyStatus.image = NSImage(named: NSImageNameStatusUnavailable)
         }
     }
     
     func handlePingError(){
+        let red = NSImage(named: "redSub")
+        self.statusItem.image = red
         self.pingView.Latency.stringValue = "error"
         self.pingView.LatencyStatus.image = NSImage(named: NSImageNameStatusNone)
     }
@@ -75,20 +83,20 @@ class StatusMenuController: NSObject {
     func handlePingDefault(){
         let delay = DispatchTime.now() + 1
         DispatchQueue.main.asyncAfter(deadline: delay) {
+            let black = NSImage(named: "blackSub")
+            self.statusItem.image = black
             self.pingView.Latency.stringValue = "---"
             self.pingView.LatencyStatus.image = NSImage(named: NSImageNameStatusNone)
         }
     }
     
     override func awakeFromNib() {
-        let icon = NSImage(named: "statusIcon")
-        // icon?.isTemplate = true
-        // best for dark mode
+        let black = NSImage(named: "blackSub")
         pingMenuItem = statusMenu.item(withTitle: "Item")
         pingView.Latency.stringValue = "---"
         pingView.LatencyStatus.image = NSImage(named: NSImageNameStatusNone)
         pingMenuItem.view = pingView
-        statusItem.image = icon
+        statusItem.image = black
         statusItem.menu = statusMenu
     }
     
