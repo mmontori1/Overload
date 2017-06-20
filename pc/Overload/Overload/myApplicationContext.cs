@@ -9,6 +9,7 @@ using Overload.Properties;
 using System.Net.NetworkInformation;
 using System.Reflection;
 using System.IO;
+using System.Collections.Concurrent;
 
 namespace Overload
 {
@@ -16,13 +17,37 @@ namespace Overload
     {
         // data members
         private NotifyIcon trayIcon;
-        private int game;
+        private Game game;
+        public Dictionary<String, Game> games;
+        private FixedSizedQueue<int> pings = new FixedSizedQueue<int>(5);
+
 
         // constructor
         public myApplicationContext()
         {
+            this.games = new Dictionary<string, Game>();
+            loadGames();
             trayIcon = new NotifyIcon();
-            game = 0; // defaults to overwatch
+            this.game = games["League of Legends"]; // defaults to overwatch
+        }
+
+        public void loadGames()
+        {
+            Game Lol = new Game("League of Legends");
+            Lol.addRegionIP("NA", "104.160.131.1");
+            Lol.addRegionIP("EUW", "104.160.141.3");
+            Lol.addRegionIP("EUNE", "104.160.142.3");
+            Lol.addRegionIP("OCE", "104.160.156.1");
+            Lol.addRegionIP("LAN", "104.160.136.3");
+            this.games.Add(Lol.title, Lol);
+            Game Overwatch = new Game("Overwatch");
+            Overwatch.addRegionIP("US West", "24.105.62.129");
+            Overwatch.addRegionIP("US Central", "24.105.62.129");
+            Overwatch.addRegionIP("EU1", "185.60.114.159");
+            Overwatch.addRegionIP("EU2", "185.60.112.157");
+            Overwatch.addRegionIP("Korea", "211.234.110.1");
+            Overwatch.addRegionIP("Taiwan", "203.66.81.98");
+            this.games.Add(Overwatch.title, Overwatch);
         }
 
         // member functions
@@ -45,14 +70,14 @@ namespace Overload
         public void Ping()
         {
             string address, title;
-            if (game == 0)
+            if (game.Equals("Overwatch"))
             {
                 address = "24.105.62.129";
-                title = "OverWatch: ";
+                title = "Overwatch: ";
             }
             else {
                 address = "104.160.131.1";
-                title = "League: ";
+                title = "LoL: ";
             }
             
             PingReply reply;
@@ -124,13 +149,13 @@ namespace Overload
 
         void Overwatch_Click(object sender, EventArgs e)
         {
-            game = 0;
+            game = games["Overwatch"];
             Ping();
         }
 
         void League_Click(object sender, EventArgs e)
         {
-            game = 1;
+            game = games["League of Legends"];
             Ping();
         }
 
@@ -139,5 +164,47 @@ namespace Overload
             Application.Exit();
         }
 
+    }
+
+    public class FixedSizedQueue<T> : ConcurrentQueue<T>
+    {
+        private readonly object syncObject = new object();
+
+        public int Size { get; private set; }
+
+        public FixedSizedQueue(int size)
+        {
+            Size = size;
+        }
+
+        public new void Enqueue(T obj)
+        {
+            base.Enqueue(obj);
+            lock (syncObject)
+            {
+                while (base.Count > Size)
+                {
+                    T outObj;
+                    base.TryDequeue(out outObj);
+                }
+            }
+        }
+    }
+
+    public class Game
+    {
+        public String title { get; set;}
+        private Dictionary<String, String> regionsIP;
+
+        public Game(String title)
+        {
+            this.title = title;
+            this.regionsIP = new Dictionary<string, string>();
+        }
+
+        public void addRegionIP(String region, String ip)
+        {
+            this.regionsIP.Add(region, ip);
+        }
     }
 }
