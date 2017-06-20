@@ -17,6 +17,7 @@
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
         <customObject id="ZAf-co-Jvt" customClass="StatusMenuController" customModule="Overload" customModuleProvider="target">
             <connections>
+                <outlet property="pingView" destination="dDt-1K-0Li" id="Hfd-K0-3ft"/>
                 <outlet property="statusMenu" destination="VLm-uB-yss" id="Zgr-Gy-kgL"/>
             </connections>
         </customObject>
@@ -28,6 +29,9 @@
                         <action selector="startClicked:" target="ZAf-co-Jvt" id="Bg6-L0-HCF"/>
                     </connections>
                 </menuItem>
+                <menuItem title="PingView" id="5XM-Tc-d5I">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                </menuItem>
                 <menuItem title="Quit" id="dCR-tA-Dsd">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
@@ -35,7 +39,7 @@
                     </connections>
                 </menuItem>
             </items>
-            <point key="canvasLocation" x="-84" y="195"/>
+            <point key="canvasLocation" x="-84.5" y="204.5"/>
         </menu>
         <customView id="dDt-1K-0Li" customClass="PingView" customModule="Overload" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="265" height="90"/>
