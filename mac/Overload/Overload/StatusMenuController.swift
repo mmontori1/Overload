@@ -12,7 +12,9 @@ import PlainPing
 
 class StatusMenuController: NSObject {
     @IBOutlet weak var statusMenu: NSMenu!
-
+    @IBOutlet weak var pingView: PingView!
+    
+    var pingMenuItem: NSMenuItem!
     let statusItem = NSStatusBar.system().statusItem(withLength: NSVariableStatusItemLength)
     
     var timer = Timer()
@@ -25,7 +27,8 @@ class StatusMenuController: NSObject {
     func ping() {
         PlainPing.ping("104.160.131.1", withTimeout: 1.0, completionBlock: { (timeElapsed:Double?, error:Error?) in
             if let latency = timeElapsed {
-                print("latency (ms): \(latency)")
+                print("wow")
+                self.pingView.Latency.stringValue = String(format: "%.2fms", latency)
             }
             if let error = error {
                 print("error: \(error.localizedDescription)")
@@ -33,23 +36,31 @@ class StatusMenuController: NSObject {
         })
     }
     
+    func togglePinging(){
+        if(!isPinging){
+            isPinging = true;
+            startPing()
+        }
+        else{
+            isPinging = false;
+            self.pingView.Latency.stringValue = "---"
+            timer.invalidate()
+        }
+    }
+    
     override func awakeFromNib() {
         let icon = NSImage(named: "statusIcon")
         // icon?.isTemplate = true 
         // best for dark mode
+        pingMenuItem = statusMenu.item(withTitle: "Item")
+        pingView.Latency.stringValue = "---"
+        pingMenuItem.view = pingView
         statusItem.image = icon
         statusItem.menu = statusMenu
     }
     
     @IBAction func startClicked(_ sender: NSMenuItem) {
-        if(!isPinging){
-            startPing()
-            isPinging = true;
-        }
-        else{
-            timer.invalidate()
-            isPinging = false;
-        }
+        togglePinging()
     }
     
     @IBAction func quitClicked(sender: NSMenuItem) {
