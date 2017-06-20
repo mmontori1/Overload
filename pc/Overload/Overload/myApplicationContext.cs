@@ -16,11 +16,13 @@ namespace Overload
     {
         // data members
         private NotifyIcon trayIcon;
+        private int game;
 
         // constructor
         public myApplicationContext()
         {
             trayIcon = new NotifyIcon();
+            game = 0;
         }
 
         // member functions
@@ -28,9 +30,9 @@ namespace Overload
         {
             trayIcon.MouseClick += new MouseEventHandler(mc);
             trayIcon.Icon = Resources.submarine;
-            trayIcon.Text = "Ping Pong";
+            trayIcon.Text = "Overload";
             trayIcon.Visible = true;
-            Ping();
+            trayIcon.ContextMenuStrip = CreateContextMenu();
         }
 
         // releases resources
@@ -42,8 +44,17 @@ namespace Overload
         // Pings Overwatch US Central server every second for a minute
         public void Ping()
         {
-
-            string address = "24.105.62.129";
+            string address, title;
+            if (game == 0)
+            {
+                address = "24.105.62.129";
+                title = "OverWatch: ";
+            }
+            else {
+                address = "104.160.131.1";
+                title = "League: ";
+            }
+            
             PingReply reply;
             Ping pinger = new Ping();
             int iter = 60;
@@ -56,7 +67,7 @@ namespace Overload
 
                     if (reply.Status == IPStatus.Success)
                     {
-                        trayIcon.Text = reply.RoundtripTime.ToString();
+                        trayIcon.Text = title + reply.RoundtripTime.ToString();
                     }
                     System.Threading.Thread.Sleep(1000 - Convert.ToInt32(reply.RoundtripTime));
                 }
@@ -74,10 +85,55 @@ namespace Overload
             {
                 Ping();
             }
-            if (e.Button == MouseButtons.Right)
-            {
-                Application.Exit();
-            }
         }
+
+
+        // ----------------------------------------------
+
+        // create contextmenustrip
+        public ContextMenuStrip CreateContextMenu()
+        {
+            ContextMenuStrip menu = new ContextMenuStrip();
+            ToolStripMenuItem item;
+
+            item = new ToolStripMenuItem();
+            item.Text = "Overwatch";
+            item.Click += new EventHandler(Overwatch_Click);
+            item.Image = Resources.overwatch;
+            menu.Items.Add(item);
+
+            item = new ToolStripMenuItem();
+            item.Text = "League";
+            item.Click += new EventHandler(League_Click);
+            item.Image = Resources.league;
+            menu.Items.Add(item);
+
+            // Exit.
+            item = new ToolStripMenuItem();
+            item.Text = "Exit";
+            item.Click += new System.EventHandler(Exit_Click);
+            // item.Image = Resources.Exit;
+            menu.Items.Add(item);
+
+            return menu;
+        }
+
+        void Overwatch_Click(object sender, EventArgs e)
+        {
+            game = 0;
+            Ping();
+        }
+
+        void League_Click(object sender, EventArgs e)
+        {
+            game = 1;
+            Ping();
+        }
+
+        void Exit_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
     }
 }
