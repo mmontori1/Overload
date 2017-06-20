@@ -41,7 +41,7 @@ namespace Overload
             trayIcon.Dispose();
         }
 
-        // Pings Overwatch US Central server every second for a minute
+        // Pings server every second for a minute
         public void Ping()
         {
             string address, title;

@@ -61,6 +61,16 @@ namespace Overload.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon green_sub {
+            get {
+                object obj = ResourceManager.GetObject("green_sub", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap league {
@@ -83,6 +93,16 @@ namespace Overload.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
+        internal static System.Drawing.Icon red_sub {
+            get {
+                object obj = ResourceManager.GetObject("red_sub", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
         internal static System.Drawing.Icon submarine {
             get {
                 object obj = ResourceManager.GetObject("submarine", resourceCulture);
@@ -96,6 +116,16 @@ namespace Overload.Properties {
         internal static System.Drawing.Icon white_sub {
             get {
                 object obj = ResourceManager.GetObject("white_sub", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon yellow_sub {
+            get {
+                object obj = ResourceManager.GetObject("yellow_sub", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
             }
         }
