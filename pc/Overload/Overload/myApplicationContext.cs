@@ -17,10 +17,11 @@ namespace Overload
     {
         // data members
         private NotifyIcon trayIcon;
-        private Game game;
+        private bool isRunning = false;
+        private Game curGame;
+        private String curRegion;
         public Dictionary<String, Game> games;
-        private FixedSizedQueue<int> pings = new FixedSizedQueue<int>(5);
-
+        private FixedSizedQueue<long> pings = new FixedSizedQueue<long>(5);
 
         // constructor
         public myApplicationContext()
@@ -28,7 +29,8 @@ namespace Overload
             this.games = new Dictionary<string, Game>();
             loadGames();
             trayIcon = new NotifyIcon();
-            this.game = games["League of Legends"]; // defaults to overwatch
+            this.curGame = games["League of Legends"]; // defaults to LoL
+            this.curRegion = "US Central";
         }
 
         public void loadGames()
@@ -69,36 +71,45 @@ namespace Overload
         // Pings server every second for a minute
         public async Task Ping()
         {
-            string address, title;
-            if (game.Equals("Overwatch"))
-            {
-                address = "24.105.62.129";
-                title = "Overwatch: ";
-            }
-            else {
-                address = "104.160.131.1";
-                title = "LoL: ";
-            }
+
+            String address = curGame.regionsIP[curRegion];
             
             PingReply reply;
             Ping pinger = new Ping();
-            int iter = 60;
-            int average = 0;
-            int sum = 0;
 
             try
             {
-                for (int i = 0; i < iter; i++)
+                for (int i = 0; i < 60; i ++)
                 {
                     reply = pinger.Send(address);
-
-                    if (reply.Status == IPStatus.Success)
+                    pings.Enqueue(reply.RoundtripTime);
+                    long avgPing = (long) pings.Average();
+                    trayIcon.Text = curGame.title + " " + curRegion + ": " + avgPing;
+                    if (avgPing > 100)
                     {
-                        sum += Convert.ToInt32(reply.RoundtripTime);
-                        await Task.Delay(1000);
-                        trayIcon.Text = "iter: " + i.ToString();
+                        trayIcon.Icon = Resources.red_sub;
+                    } else if (avgPing > 60)
+                    {
+                        trayIcon.Icon = Resources.yellow_sub;
                     }
+                    else
+                    {
+                        trayIcon.Icon = Resources.green_sub;
+                    }
+                    await Task.Delay(1000);
                 }
+                
+                //for (int i = 0; i < iter; i++)
+                //{
+                //    reply = pinger.Send(address);
+
+//                    if (reply.Status == IPStatus.Success)
+//                    {
+//                        sum += Convert.ToInt32(reply.RoundtripTime);
+//                        await Task.Delay(1000);
+//                        trayIcon.Text = "iter: " + i.ToString();
+//                    }
+//               }
             }
             catch (PingException)
             {
@@ -106,8 +117,8 @@ namespace Overload
             }
 
             // calulate average ping
-            average = sum / iter;
-            trayIcon.Text = title + average.ToString();
+//            average = sum / iter;
+//            trayIcon.Text = title + average.ToString();
         }
 
         // handles left mouse click
@@ -115,7 +126,13 @@ namespace Overload
         {
             if (e.Button == MouseButtons.Left)
             {
-                Ping();
+                if (isRunning)
+                {
+
+                } else
+                {
+                    Ping();
+                }
             }
         }
 
@@ -151,13 +168,13 @@ namespace Overload
 
         void Overwatch_Click(object sender, EventArgs e)
         {
-            game = games["Overwatch"];
+            curGame = games["Overwatch"];
             Ping();
         }
 
         void League_Click(object sender, EventArgs e)
         {
-            game = games["League of Legends"];
+            curGame = games["League of Legends"];
             Ping();
         }
 
@@ -196,7 +213,7 @@ namespace Overload
     public class Game
     {
         public String title { get; set;}
-        private Dictionary<String, String> regionsIP;
+        public Dictionary<String, String> regionsIP { get; }
 
         public Game(String title)
         {
