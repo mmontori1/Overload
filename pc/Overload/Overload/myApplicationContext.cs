@@ -29,7 +29,7 @@ namespace Overload
         public void Display()
         {
             trayIcon.MouseClick += new MouseEventHandler(mc);
-            trayIcon.Icon = Resources.submarine;
+            trayIcon.Icon = Resources.white_sub;
             trayIcon.Text = "Overload";
             trayIcon.Visible = true;
             trayIcon.ContextMenuStrip = CreateContextMenu();
