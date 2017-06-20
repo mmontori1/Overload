@@ -24,14 +24,20 @@
         </customObject>
         <menu id="VLm-uB-yss">
             <items>
+                <menuItem title="About" id="EjJ-pH-Ovr" userLabel="About">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="orderFrontStandardAboutPanel:" target="-1" id="UTe-YR-Tl3"/>
+                    </connections>
+                </menuItem>
+                <menuItem isSeparatorItem="YES" id="ZBD-7v-aY4"/>
                 <menuItem title="Start" id="LON-sr-6ja" userLabel="Start/Stop">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="toggleClicked:" target="ZAf-co-Jvt" id="Gbq-tN-sMc"/>
                     </connections>
                 </menuItem>
-                <menuItem isSeparatorItem="YES" id="ZBD-7v-aY4"/>
-                <menuItem title="Item" id="swG-I8-PLX">
+                <menuItem title="Ping View" id="swG-I8-PLX">
                     <modifierMask key="keyEquivalentModifierMask"/>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="fVh-45-15z"/>
@@ -42,14 +48,14 @@
                     </connections>
                 </menuItem>
             </items>
-            <point key="canvasLocation" x="-84.5" y="204.5"/>
+            <point key="canvasLocation" x="-66" y="173"/>
         </menu>
         <customView id="dDt-1K-0Li" customClass="PingView" customModule="Overload" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="186" height="35"/>
+            <rect key="frame" x="0.0" y="0.0" width="167" height="35"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MBI-eg-arm">
-                    <rect key="frame" x="32" y="10" width="39" height="18"/>
+                    <rect key="frame" x="32" y="10" width="34.5" height="18"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Ping: " id="VsH-wD-Pch">
                         <font key="font" metaFont="system"/>
@@ -76,7 +82,7 @@
                 <outlet property="Latency" destination="Vi5-J9-VUq" id="TyC-gx-aL6"/>
                 <outlet property="latencyStatus" destination="2YX-f0-fR4" id="Han-zm-Fy2"/>
             </connections>
-            <point key="canvasLocation" x="-66" y="292.5"/>
+            <point key="canvasLocation" x="-75.5" y="292.5"/>
         </customView>
     </objects>
     <resources>
