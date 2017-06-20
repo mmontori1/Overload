@@ -23,17 +23,18 @@ class StatusMenuController: NSObject {
     
     func startPing() {
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: (#selector(self.ping)), userInfo: nil, repeats: true)
+        RunLoop.main.add(timer, forMode: RunLoopMode.eventTrackingRunLoopMode)
     }
     
     func ping() {
         PlainPing.ping("104.160.131.1", withTimeout: 1.0, completionBlock: { (timeElapsed:Double?, error:Error?) in
             if let latency = timeElapsed {
-                print("wow")
+                print(String(format: "%.2fms", latency))
                 self.pingView.Latency.stringValue = String(format: "%.2fms", latency)
-//                   self.statusItem.title = "Ping: " + String(format: "%.2fms", latency)
             }
             if let error = error {
                 print("error: \(error.localizedDescription)")
+                self.pingView.Latency.stringValue = "error"
             }
         })
         
@@ -49,7 +50,6 @@ class StatusMenuController: NSObject {
             isPinging = false;
             togglePingMenuItem.title = "Start"
             self.pingView.Latency.stringValue = "---"
-//            self.statusItem.title = "Ping: ---"
             timer.invalidate()
         }
     }
@@ -62,7 +62,6 @@ class StatusMenuController: NSObject {
         pingView.Latency.stringValue = "---"
         pingMenuItem.view = pingView
         statusItem.image = icon
-//        statusItem.title = "Ping: ---"
         statusItem.menu = statusMenu
     }
     
