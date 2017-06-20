@@ -110,7 +110,7 @@ namespace Overload
             item = new ToolStripMenuItem();
             item.Text = "League";
             item.Click += new EventHandler(League_Click);
-            item.Image = Resources.league;
+            item.Image = Resources.LoL;
             menu.Items.Add(item);
 
             // Exit.

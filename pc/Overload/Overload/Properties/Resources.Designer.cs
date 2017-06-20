@@ -73,9 +73,9 @@ namespace Overload.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap league {
+        internal static System.Drawing.Bitmap LoL {
             get {
-                object obj = ResourceManager.GetObject("league", resourceCulture);
+                object obj = ResourceManager.GetObject("LoL", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

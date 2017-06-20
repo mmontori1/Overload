@@ -76,12 +76,6 @@
     <None Include="Resources\submarine.ico" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\league.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\overwatch.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\white_sub.ico" />
   </ItemGroup>
   <ItemGroup>
@@ -92,6 +86,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\yellow_sub.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\overwatch.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LoL.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
