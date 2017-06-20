@@ -11,6 +11,7 @@
 		016C94CD1EF7877D00B477B2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 016C94CC1EF7877D00B477B2 /* Assets.xcassets */; };
 		016C94D01EF7877D00B477B2 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 016C94CE1EF7877D00B477B2 /* MainMenu.xib */; };
 		016C94D81EF7891C00B477B2 /* StatusMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016C94D71EF7891C00B477B2 /* StatusMenuController.swift */; };
+		0174727E1EF9A6F000381E01 /* PingAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0174727D1EF9A6F000381E01 /* PingAPI.swift */; };
 		01E226F51EF8B06C00ECFE1A /* PingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E226F41EF8B06C00ECFE1A /* PingView.swift */; };
 		77EA4995E77B2699131A3651 /* Pods_Overload.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEA5027A50997943D089D0FB /* Pods_Overload.framework */; };
 /* End PBXBuildFile section */
@@ -22,6 +23,7 @@
 		016C94CF1EF7877D00B477B2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		016C94D11EF7877D00B477B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		016C94D71EF7891C00B477B2 /* StatusMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusMenuController.swift; sourceTree = "<group>"; };
+		0174727D1EF9A6F000381E01 /* PingAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PingAPI.swift; sourceTree = "<group>"; };
 		01E226F41EF8B06C00ECFE1A /* PingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PingView.swift; sourceTree = "<group>"; };
 		A9AC5AA141B4EE02680A7C40 /* Pods-Overload.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Overload.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Overload/Pods-Overload.debug.xcconfig"; sourceTree = "<group>"; };
 		AEA5027A50997943D089D0FB /* Pods_Overload.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Overload.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -62,6 +64,7 @@
 			isa = PBXGroup;
 			children = (
 				016C94CA1EF7877D00B477B2 /* AppDelegate.swift */,
+				0174727D1EF9A6F000381E01 /* PingAPI.swift */,
 				016C94D71EF7891C00B477B2 /* StatusMenuController.swift */,
 				016C94CC1EF7877D00B477B2 /* Assets.xcassets */,
 				016C94CE1EF7877D00B477B2 /* MainMenu.xib */,
@@ -210,6 +213,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0174727E1EF9A6F000381E01 /* PingAPI.swift in Sources */,
 				01E226F51EF8B06C00ECFE1A /* PingView.swift in Sources */,
 				016C94D81EF7891C00B477B2 /* StatusMenuController.swift in Sources */,
 				016C94CB1EF7877D00B477B2 /* AppDelegate.swift in Sources */,

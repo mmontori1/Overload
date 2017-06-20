@@ -13,39 +13,46 @@ import PlainPing
 class StatusMenuController: NSObject {
     @IBOutlet weak var statusMenu: NSMenu!
     @IBOutlet weak var pingView: PingView!
-    
     var pingMenuItem: NSMenuItem!
     let statusItem = NSStatusBar.system().statusItem(withLength: NSVariableStatusItemLength)
-    
+    let pingAPI = PingAPI()
     var timer = Timer()
     var isPinging = false
     
-    func startPing() {
-        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: (#selector(self.ping)), userInfo: nil, repeats: true)
-    }
+//    func startPing() {
+//        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: (#selector(self.ping)), userInfo: nil, repeats: true)
+//        RunLoop.main.add(timer, forMode: RunLoopMode.commonModes)
+//    }
+//    
+//    func ping() {
+//        PlainPing.ping("104.160.131.1", withTimeout: 1.0, completionBlock: { (timeElapsed:Double?, error:Error?) in
+//            if let latency = timeElapsed {
+//                print("latency: \(latency)")
+//                self.pingView.Latency.stringValue = String(format: "%.2fms", latency)
+//            }
+//            if let error = error {
+//                print("error: \(error.localizedDescription)")
+//                self.pingView.Latency.stringValue = "error"
+//            }
+//        })
+//    }
+//    
+//    func togglePinging(){
+//        if(!isPinging){
+//            isPinging = true;
+//            startPing()
+//        }
+//        else{
+//            isPinging = false;
+//            self.pingView.Latency.stringValue = "---"
+//            timer.invalidate()
+//        }
+//    }
     
-    func ping() {
-        PlainPing.ping("104.160.131.1", withTimeout: 1.0, completionBlock: { (timeElapsed:Double?, error:Error?) in
-            if let latency = timeElapsed {
-                print("wow")
-                self.pingView.Latency.stringValue = String(format: "%.2fms", latency)
-            }
-            if let error = error {
-                print("error: \(error.localizedDescription)")
-            }
-        })
-    }
-    
-    func togglePinging(){
-        if(!isPinging){
-            isPinging = true;
-            startPing()
-        }
-        else{
-            isPinging = false;
-            self.pingView.Latency.stringValue = "---"
-            timer.invalidate()
-        }
+    func updatePing(){
+        let value = pingAPI.fetchPing("104.160.131.1");
+        print(value)
+        pingView.update(value)
     }
     
     override func awakeFromNib() {
@@ -60,7 +67,8 @@ class StatusMenuController: NSObject {
     }
     
     @IBAction func startClicked(_ sender: NSMenuItem) {
-        togglePinging()
+        updatePing()
+//        togglePinging()
     }
     
     @IBAction func quitClicked(sender: NSMenuItem) {

@@ -44,11 +44,11 @@
             <point key="canvasLocation" x="-84.5" y="204.5"/>
         </menu>
         <customView id="dDt-1K-0Li" customClass="PingView" customModule="Overload" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="186" height="90"/>
+            <rect key="frame" x="0.0" y="0.0" width="179" height="36"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MBI-eg-arm">
-                    <rect key="frame" x="33" y="65" width="39" height="17"/>
+                    <rect key="frame" x="33" y="11" width="39" height="17"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Ping: " id="VsH-wD-Pch">
                         <font key="font" metaFont="system"/>
@@ -57,12 +57,12 @@
                     </textFieldCell>
                 </textField>
                 <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DH8-Bv-dhz">
-                    <rect key="frame" x="4" y="60" width="27" height="27"/>
+                    <rect key="frame" x="4" y="6" width="27" height="27"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="K02-G1-xWU"/>
                 </imageView>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vi5-J9-VUq" userLabel="Latency">
-                    <rect key="frame" x="69" y="65" width="71" height="17"/>
+                    <rect key="frame" x="69" y="11" width="71" height="17"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" id="0YR-ek-DaR">
                         <font key="font" metaFont="system"/>
@@ -75,7 +75,7 @@
                 <outlet property="Latency" destination="Vi5-J9-VUq" id="TyC-gx-aL6"/>
                 <outlet property="imageView" destination="DH8-Bv-dhz" id="uXk-M3-mku"/>
             </connections>
-            <point key="canvasLocation" x="-66" y="320"/>
+            <point key="canvasLocation" x="-69.5" y="293"/>
         </customView>
     </objects>
 </document>
