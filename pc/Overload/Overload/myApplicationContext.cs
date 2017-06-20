@@ -22,7 +22,7 @@ namespace Overload
         public myApplicationContext()
         {
             trayIcon = new NotifyIcon();
-            game = 0;
+            game = 0; // defaults to overwatch
         }
 
         // member functions
@@ -57,7 +57,7 @@ namespace Overload
             
             PingReply reply;
             Ping pinger = new Ping();
-            int iter = 60;
+            int iter = 1;
             int average = 0;
             int sum = 0;
 
@@ -79,7 +79,7 @@ namespace Overload
             }
 
             // calulate average ping
-            average = sum / 60;
+            average = sum / iter;
             trayIcon.Text = title + average.ToString();
         }
 
@@ -125,11 +125,13 @@ namespace Overload
         void Overwatch_Click(object sender, EventArgs e)
         {
             game = 0;
+            Ping();
         }
 
         void League_Click(object sender, EventArgs e)
         {
             game = 1;
+            Ping();
         }
 
         void Exit_Click(object sender, EventArgs e)
