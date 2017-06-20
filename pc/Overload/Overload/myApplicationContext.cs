@@ -58,6 +58,8 @@ namespace Overload
             PingReply reply;
             Ping pinger = new Ping();
             int iter = 60;
+            int average = 0;
+            int sum = 0;
 
             try
             {
@@ -67,15 +69,18 @@ namespace Overload
 
                     if (reply.Status == IPStatus.Success)
                     {
-                        trayIcon.Text = title + reply.RoundtripTime.ToString();
+                        sum += Convert.ToInt32(reply.RoundtripTime);
                     }
-                    System.Threading.Thread.Sleep(1000 - Convert.ToInt32(reply.RoundtripTime));
                 }
             }
             catch (PingException)
             {
                 trayIcon.Text = "error";
             }
+
+            // calulate average ping
+            average = sum / 60;
+            trayIcon.Text = title + average.ToString();
         }
 
         // handles left mouse click
@@ -112,7 +117,6 @@ namespace Overload
             item = new ToolStripMenuItem();
             item.Text = "Exit";
             item.Click += new System.EventHandler(Exit_Click);
-            // item.Image = Resources.Exit;
             menu.Items.Add(item);
 
             return menu;
@@ -121,13 +125,11 @@ namespace Overload
         void Overwatch_Click(object sender, EventArgs e)
         {
             game = 0;
-            Ping();
         }
 
         void League_Click(object sender, EventArgs e)
         {
             game = 1;
-            Ping();
         }
 
         void Exit_Click(object sender, EventArgs e)
