@@ -18,6 +18,7 @@
         <customObject id="ZAf-co-Jvt" customClass="StatusMenuController" customModule="Overload" customModuleProvider="target">
             <connections>
                 <outlet property="pingView" destination="dDt-1K-0Li" id="74p-zl-JSs"/>
+                <outlet property="pingWindow" destination="Iam-at-ndE" id="bW6-Yg-LSH"/>
                 <outlet property="statusMenu" destination="VLm-uB-yss" id="Zgr-Gy-kgL"/>
                 <outlet property="togglePingMenuItem" destination="LON-sr-6ja" id="OHD-vV-dWZ"/>
             </connections>
@@ -31,6 +32,12 @@
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="ZBD-7v-aY4"/>
+                <menuItem title="Open" id="3aG-MT-Fbf">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="openClicked:" target="ZAf-co-Jvt" id="E5s-iK-UK9"/>
+                    </connections>
+                </menuItem>
                 <menuItem title="Start" id="LON-sr-6ja" userLabel="Start/Stop">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
@@ -48,7 +55,7 @@
                     </connections>
                 </menuItem>
             </items>
-            <point key="canvasLocation" x="-66" y="173"/>
+            <point key="canvasLocation" x="-106" y="80"/>
         </menu>
         <customView id="dDt-1K-0Li" customClass="PingView" customModule="Overload" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="167" height="35"/>
@@ -82,8 +89,42 @@
                 <outlet property="Latency" destination="Vi5-J9-VUq" id="TyC-gx-aL6"/>
                 <outlet property="latencyStatus" destination="2YX-f0-fR4" id="Han-zm-Fy2"/>
             </connections>
-            <point key="canvasLocation" x="-75.5" y="292.5"/>
+            <point key="canvasLocation" x="-100" y="217"/>
         </customView>
+        <window title="Overload" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="Iam-at-ndE">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
+            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+            <rect key="contentRect" x="109" y="131" width="263" height="270"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1280" height="777"/>
+            <value key="minSize" type="size" width="263" height="270"/>
+            <value key="maxSize" type="size" width="263" height="270"/>
+            <view key="contentView" id="VOY-5O-Hty">
+                <rect key="frame" x="0.0" y="0.0" width="263" height="270"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <tabView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HMk-X3-L1B" userLabel="(Ping, Preferences)">
+                        <rect key="frame" x="-7" y="-10" width="277" height="286"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <font key="font" metaFont="system"/>
+                        <tabViewItems>
+                            <tabViewItem label="Ping" identifier="1" id="ZkS-Dj-tyZ" userLabel="Ping">
+                                <view key="view" ambiguous="YES" id="ayy-MA-vzd">
+                                    <rect key="frame" x="10" y="33" width="257" height="240"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </view>
+                            </tabViewItem>
+                            <tabViewItem label="Settings" identifier="2" id="vAS-t5-uv1" userLabel="Settings">
+                                <view key="view" id="9Ys-Ie-7kG">
+                                    <rect key="frame" x="10" y="33" width="257" height="240"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </view>
+                            </tabViewItem>
+                        </tabViewItems>
+                    </tabView>
+                </subviews>
+            </view>
+            <point key="canvasLocation" x="-374" y="172"/>
+        </window>
     </objects>
     <resources>
         <image name="NSStatusNone" width="16" height="16"/>

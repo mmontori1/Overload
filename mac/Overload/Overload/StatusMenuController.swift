@@ -27,7 +27,6 @@ class StatusMenuController: NSObject {
     
     func startPing() {
         self.timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: (#selector(ping)), userInfo: nil, repeats: true)
-        RunLoop.main.add(timer, forMode: RunLoopMode.defaultRunLoopMode)
     }
     
     func ping() {
@@ -98,7 +97,10 @@ class StatusMenuController: NSObject {
         statusItem.menu = statusMenu
     }
     
-    @IBAction func toggleClicked(_ sender: Any) {
+    @IBAction func openClicked(_ sender: AnyObject) {
+    }
+    
+    @IBAction func toggleClicked(_ sender: NSMenuItem) {
         togglePinging()
     }
     
