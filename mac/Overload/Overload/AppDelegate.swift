@@ -11,6 +11,11 @@ import Cocoa
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
+    @IBOutlet weak var pingWindow: NSWindow!
+    func openWindow(){
+        let pwc = PingWindowController(window: pingWindow)
+        pwc.showWindow(self)
+    }
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
     }
@@ -20,6 +25,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // Insert code here to tear down your application
     }
 
+    @IBAction func openWindow(_ sender: Any) {
+        openWindow()
+    }
 
 }
 

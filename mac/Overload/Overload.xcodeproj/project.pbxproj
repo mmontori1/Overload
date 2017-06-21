@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		012F776E1EFB298200AE5E3D /* PingWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012F776D1EFB298200AE5E3D /* PingWindowController.swift */; };
 		016C94CB1EF7877D00B477B2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016C94CA1EF7877D00B477B2 /* AppDelegate.swift */; };
 		016C94CD1EF7877D00B477B2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 016C94CC1EF7877D00B477B2 /* Assets.xcassets */; };
 		016C94D01EF7877D00B477B2 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 016C94CE1EF7877D00B477B2 /* MainMenu.xib */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		012F776D1EFB298200AE5E3D /* PingWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PingWindowController.swift; sourceTree = "<group>"; };
 		016C94C71EF7877D00B477B2 /* Overload.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Overload.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		016C94CA1EF7877D00B477B2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		016C94CC1EF7877D00B477B2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -61,6 +63,7 @@
 		016C94C91EF7877D00B477B2 /* Overload */ = {
 			isa = PBXGroup;
 			children = (
+				012F776D1EFB298200AE5E3D /* PingWindowController.swift */,
 				016C94CA1EF7877D00B477B2 /* AppDelegate.swift */,
 				016C94D71EF7891C00B477B2 /* StatusMenuController.swift */,
 				016C94CC1EF7877D00B477B2 /* Assets.xcassets */,
@@ -213,6 +216,7 @@
 				01E226F51EF8B06C00ECFE1A /* PingView.swift in Sources */,
 				016C94D81EF7891C00B477B2 /* StatusMenuController.swift in Sources */,
 				016C94CB1EF7877D00B477B2 /* AppDelegate.swift in Sources */,
+				012F776E1EFB298200AE5E3D /* PingWindowController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

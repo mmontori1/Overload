@@ -13,50 +13,19 @@
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Overload" customModuleProvider="target"/>
+        <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Overload" customModuleProvider="target">
+            <connections>
+                <outlet property="pingWindow" destination="Iam-at-ndE" id="7NY-pf-Asv"/>
+            </connections>
+        </customObject>
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
         <customObject id="ZAf-co-Jvt" customClass="StatusMenuController" customModule="Overload" customModuleProvider="target">
             <connections>
                 <outlet property="pingView" destination="dDt-1K-0Li" id="74p-zl-JSs"/>
-                <outlet property="pingWindow" destination="Iam-at-ndE" id="bW6-Yg-LSH"/>
                 <outlet property="statusMenu" destination="VLm-uB-yss" id="Zgr-Gy-kgL"/>
                 <outlet property="togglePingMenuItem" destination="LON-sr-6ja" id="OHD-vV-dWZ"/>
             </connections>
         </customObject>
-        <menu id="VLm-uB-yss">
-            <items>
-                <menuItem title="About" id="EjJ-pH-Ovr" userLabel="About">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                    <connections>
-                        <action selector="orderFrontStandardAboutPanel:" target="-1" id="UTe-YR-Tl3"/>
-                    </connections>
-                </menuItem>
-                <menuItem isSeparatorItem="YES" id="ZBD-7v-aY4"/>
-                <menuItem title="Open" id="3aG-MT-Fbf">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                    <connections>
-                        <action selector="openClicked:" target="ZAf-co-Jvt" id="E5s-iK-UK9"/>
-                    </connections>
-                </menuItem>
-                <menuItem title="Start" id="LON-sr-6ja" userLabel="Start/Stop">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                    <connections>
-                        <action selector="toggleClicked:" target="ZAf-co-Jvt" id="Gbq-tN-sMc"/>
-                    </connections>
-                </menuItem>
-                <menuItem title="Ping View" id="swG-I8-PLX">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                </menuItem>
-                <menuItem isSeparatorItem="YES" id="fVh-45-15z"/>
-                <menuItem title="Quit" id="dCR-tA-Dsd">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                    <connections>
-                        <action selector="quitClickedWithSender:" target="ZAf-co-Jvt" id="u2o-Db-05f"/>
-                    </connections>
-                </menuItem>
-            </items>
-            <point key="canvasLocation" x="-106" y="80"/>
-        </menu>
         <customView id="dDt-1K-0Li" customClass="PingView" customModule="Overload" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="167" height="35"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -91,10 +60,44 @@
             </connections>
             <point key="canvasLocation" x="-100" y="217"/>
         </customView>
+        <menu id="VLm-uB-yss">
+            <items>
+                <menuItem title="About" id="EjJ-pH-Ovr" userLabel="About">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="orderFrontStandardAboutPanel:" target="-1" id="UTe-YR-Tl3"/>
+                    </connections>
+                </menuItem>
+                <menuItem isSeparatorItem="YES" id="ZBD-7v-aY4"/>
+                <menuItem title="Open" id="3aG-MT-Fbf">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="openWindow:" target="Voe-Tx-rLC" id="o6H-WF-uh3"/>
+                    </connections>
+                </menuItem>
+                <menuItem title="Start" id="LON-sr-6ja" userLabel="Start/Stop">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="toggleClicked:" target="ZAf-co-Jvt" id="Gbq-tN-sMc"/>
+                    </connections>
+                </menuItem>
+                <menuItem title="Ping View" id="swG-I8-PLX">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                </menuItem>
+                <menuItem isSeparatorItem="YES" id="fVh-45-15z"/>
+                <menuItem title="Quit" id="dCR-tA-Dsd">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="quitClickedWithSender:" target="ZAf-co-Jvt" id="u2o-Db-05f"/>
+                    </connections>
+                </menuItem>
+            </items>
+            <point key="canvasLocation" x="-106" y="80"/>
+        </menu>
         <window title="Overload" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="Iam-at-ndE">
             <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="109" y="131" width="263" height="270"/>
+            <rect key="contentRect" x="997" y="474" width="263" height="270"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1280" height="777"/>
             <value key="minSize" type="size" width="263" height="270"/>
             <value key="maxSize" type="size" width="263" height="270"/>
