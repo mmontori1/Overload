@@ -17,17 +17,30 @@
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
         <customObject id="ZAf-co-Jvt" customClass="StatusMenuController" customModule="Overload" customModuleProvider="target">
             <connections>
+                <outlet property="pingView" destination="dDt-1K-0Li" id="74p-zl-JSs"/>
                 <outlet property="statusMenu" destination="VLm-uB-yss" id="Zgr-Gy-kgL"/>
+                <outlet property="togglePingMenuItem" destination="LON-sr-6ja" id="OHD-vV-dWZ"/>
             </connections>
         </customObject>
         <menu id="VLm-uB-yss">
             <items>
-                <menuItem title="Start/Stop" id="LON-sr-6ja" userLabel="Start/Stop">
+                <menuItem title="About" id="EjJ-pH-Ovr" userLabel="About">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
-                        <action selector="startClicked:" target="ZAf-co-Jvt" id="Bg6-L0-HCF"/>
+                        <action selector="orderFrontStandardAboutPanel:" target="-1" id="UTe-YR-Tl3"/>
                     </connections>
                 </menuItem>
+                <menuItem isSeparatorItem="YES" id="ZBD-7v-aY4"/>
+                <menuItem title="Start" id="LON-sr-6ja" userLabel="Start/Stop">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="toggleClicked:" target="ZAf-co-Jvt" id="Gbq-tN-sMc"/>
+                    </connections>
+                </menuItem>
+                <menuItem title="Ping View" id="swG-I8-PLX">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                </menuItem>
+                <menuItem isSeparatorItem="YES" id="fVh-45-15z"/>
                 <menuItem title="Quit" id="dCR-tA-Dsd">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
@@ -35,42 +48,44 @@
                     </connections>
                 </menuItem>
             </items>
-            <point key="canvasLocation" x="-84" y="195"/>
+            <point key="canvasLocation" x="-66" y="173"/>
         </menu>
         <customView id="dDt-1K-0Li" customClass="PingView" customModule="Overload" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="265" height="90"/>
+            <rect key="frame" x="0.0" y="0.0" width="167" height="35"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MBI-eg-arm">
-                    <rect key="frame" x="55" y="57" width="39" height="17"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <rect key="frame" x="32" y="10" width="34.5" height="18"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Ping: " id="VsH-wD-Pch">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DH8-Bv-dhz">
-                    <rect key="frame" x="20" y="52" width="27" height="27"/>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vi5-J9-VUq" userLabel="Latency">
+                    <rect key="frame" x="69" y="11" width="71" height="17"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="K02-G1-xWU"/>
-                </imageView>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xUh-ez-lMv" userLabel="PingValue">
-                    <rect key="frame" x="98" y="57" width="35" height="17"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" id="ZUY-5q-e1j">
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="---" id="0YR-ek-DaR">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
+                <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2YX-f0-fR4">
+                    <rect key="frame" x="11" y="11" width="15" height="15"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                    <imageCell key="cell" selectable="YES" editable="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="NSStatusNone" id="Ksw-cf-7vS"/>
+                </imageView>
             </subviews>
             <connections>
-                <outlet property="PingText" destination="MBI-eg-arm" id="Kcs-05-Rwa"/>
-                <outlet property="PingValue" destination="xUh-ez-lMv" id="F9l-Ii-6IF"/>
-                <outlet property="imageView" destination="DH8-Bv-dhz" id="uXk-M3-mku"/>
+                <outlet property="Latency" destination="Vi5-J9-VUq" id="TyC-gx-aL6"/>
+                <outlet property="latencyStatus" destination="2YX-f0-fR4" id="Han-zm-Fy2"/>
             </connections>
-            <point key="canvasLocation" x="-83" y="320"/>
+            <point key="canvasLocation" x="-75.5" y="292.5"/>
         </customView>
     </objects>
+    <resources>
+        <image name="NSStatusNone" width="16" height="16"/>
+    </resources>
 </document>

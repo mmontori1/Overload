@@ -10,8 +10,8 @@ import Cocoa
 
 class PingView: NSView {
     
-    @IBOutlet weak var imageView: NSImageView!
+    @IBOutlet weak var LatencyStatus: NSImageView!
     @IBOutlet weak var PingText: NSTextField!
-    @IBOutlet weak var PingValue: NSTextField!
+    @IBOutlet weak var Latency: NSTextField!
 
 }
