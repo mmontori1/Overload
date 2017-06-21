@@ -17,7 +17,11 @@ class StatusMenuController: NSObject {
     
     var pingMenuItem: NSMenuItem!
     let statusItem = NSStatusBar.system().statusItem(withLength: NSVariableStatusItemLength)
-    
+    let black = NSImage(named: "blackSub")
+    let green = NSImage(named: "greenSub")
+    let yellow = NSImage(named: "yellowSub")
+    let red = NSImage(named: "redSub")
+
     var timer = Timer()
     var isPinging = false
     
@@ -57,24 +61,20 @@ class StatusMenuController: NSObject {
     func handlePingView(latency: Double){
         self.pingView.Latency.stringValue = String(format: "%.2fms", latency)
         if 0 < latency && latency < 100 {
-            let green = NSImage(named: "greenSub")
             self.statusItem.image = green
             self.pingView.LatencyStatus.image = NSImage(named: NSImageNameStatusAvailable)
         }
         else if 100 <= latency && latency < 250 {
-            let yellow = NSImage(named: "yellowSub")
             self.statusItem.image = yellow
             self.pingView.LatencyStatus.image = NSImage(named: NSImageNameStatusPartiallyAvailable)
         }
         else if 250 <= latency {
-            let red = NSImage(named: "redSub")
             self.statusItem.image = red
             self.pingView.LatencyStatus.image = NSImage(named: NSImageNameStatusUnavailable)
         }
     }
     
     func handlePingError(){
-        let red = NSImage(named: "redSub")
         self.statusItem.image = red
         self.pingView.Latency.stringValue = "error"
         self.pingView.LatencyStatus.image = NSImage(named: NSImageNameStatusNone)
@@ -83,15 +83,13 @@ class StatusMenuController: NSObject {
     func handlePingDefault(){
         let delay = DispatchTime.now() + 1
         DispatchQueue.main.asyncAfter(deadline: delay) {
-            let black = NSImage(named: "blackSub")
-            self.statusItem.image = black
+            self.statusItem.image = self.black
             self.pingView.Latency.stringValue = "---"
             self.pingView.LatencyStatus.image = NSImage(named: NSImageNameStatusNone)
         }
     }
     
     override func awakeFromNib() {
-        let black = NSImage(named: "blackSub")
         pingMenuItem = statusMenu.item(withTitle: "Ping View")
         pingView.Latency.stringValue = "---"
         pingView.LatencyStatus.image = NSImage(named: NSImageNameStatusNone)
