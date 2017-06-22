@@ -7,10 +7,9 @@ using System.Diagnostics;
 using System.Windows.Forms;
 using Overload.Properties;
 using System.Net.NetworkInformation;
-using System.Reflection;
-using System.IO;
 using System.Collections.Concurrent;
 using System.Threading;
+
 
 namespace Overload
 {
@@ -146,21 +145,42 @@ namespace Overload
         public ContextMenuStrip CreateContextMenu()
         {
             ContextMenuStrip menu = new ContextMenuStrip();
-            ToolStripMenuItem item;
+            ToolStripMenuItem item, submenu;
+
+            // Overwatch submenu
+            submenu = new ToolStripMenuItem();
+            submenu.Text = "Overwatch";
 
             item = new ToolStripMenuItem();
-            item.Text = "Overwatch";
-            item.Click += new EventHandler(Overwatch_Click);
-            item.Image = Resources.overwatch;
-            menu.Items.Add(item);
+            item.Text = "US Central";
+            item.Click += new EventHandler(OV_US_Central_Click);
+            submenu.DropDownItems.Add(item);
 
             item = new ToolStripMenuItem();
-            item.Text = "League";
-            item.Click += new EventHandler(League_Click);
-            item.Image = Resources.LoL;
-            menu.Items.Add(item);
+            item.Text = "US West";
+            item.Click += new EventHandler(OV_US_West_Click);
+            submenu.DropDownItems.Add(item);
 
-            // Exit.
+            menu.Items.Add(submenu);
+
+            // League submenu
+            submenu = new ToolStripMenuItem();
+            submenu.Text = "League";
+
+            item = new ToolStripMenuItem();
+            item.Text = "NA";
+            item.Click += new EventHandler(LE_NA_Central_Click);
+            submenu.DropDownItems.Add(item);
+
+            item = new ToolStripMenuItem();
+            item.Text = "EUW";
+            item.Click += new EventHandler(LE_EUW_West_Click);
+            submenu.DropDownItems.Add(item);
+
+            menu.Items.Add(submenu);
+
+
+            // Exit tab
             item = new ToolStripMenuItem();
             item.Text = "Exit";
             item.Click += new System.EventHandler(Exit_Click);
@@ -169,17 +189,31 @@ namespace Overload
             return menu;
         }
 
-        void Overwatch_Click(object sender, EventArgs e)
+        void OV_US_Central_Click(object sender, EventArgs e)
         {
             curGame = games["Overwatch"];
-            curRegion = "US Central"; // default until we can handle region changes
+            curRegion = "US Central";
             new_Thread();
         }
 
-        void League_Click(object sender, EventArgs e)
+        void OV_US_West_Click(object sender, EventArgs e)
+        {
+            curGame = games["Overwatch"];
+            curRegion = "US West";
+            new_Thread();
+        }
+
+        void LE_NA_Central_Click(object sender, EventArgs e)
         {
             curGame = games["League of Legends"];
-            curRegion = "NA"; // default until we can handle region changes
+            curRegion = "NA";
+            new_Thread();
+        }
+
+        void LE_EUW_West_Click(object sender, EventArgs e)
+        {
+            curGame = games["League of Legends"];
+            curRegion = "EUW";
             new_Thread();
         }
 
@@ -189,7 +223,39 @@ namespace Overload
             Application.Exit();
         }
 
+        // ----------------------------------------------
+
+        // create region menustrip
+        public ContextMenuStrip regionMenu()
+        {
+            ContextMenuStrip regionMenu = new ContextMenuStrip();
+            ToolStripMenuItem item;
+
+            if (curGame == games["Overwatch"]) {
+                item = new ToolStripMenuItem();
+                item.Text = "US Central";
+                item.Click += new EventHandler(US_Central_Click);
+                regionMenu.Items.Add(item);
+            }
+            else {
+                item = new ToolStripMenuItem();
+                item.Text = "NA";
+                item.Click += new EventHandler(NA_Click);
+                regionMenu.Items.Add(item);
+            }
+            return regionMenu;
+        }
+
+        void US_Central_Click(object sender, EventArgs e) {
+
+        }
+
+        void NA_Click(object sender, EventArgs e)
+        {
+
+        }
     }
+
 
     public class FixedSizedQueue<T> : ConcurrentQueue<T>
     {
