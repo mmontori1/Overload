@@ -12,7 +12,10 @@ import Cocoa
 class AppDelegate: NSObject, NSApplicationDelegate {
 
     @IBOutlet weak var pingWindow: NSWindow!
+
     func openWindow(){
+//        NSApp.activate(ignoringOtherApps: true) (possible setting!)
+        pingWindow.level = Int(CGWindowLevelForKey(.maximumWindow))
         let pwc = PingWindowController(window: pingWindow)
         pwc.showWindow(self)
     }

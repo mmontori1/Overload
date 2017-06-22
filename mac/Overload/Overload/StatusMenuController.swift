@@ -22,25 +22,26 @@ class StatusMenuController: NSObject {
     let yellow = NSImage(named: "yellowSub")
     let red = NSImage(named: "redSub")
     
+//    var timer: Timer!
     var timer = Timer()
     var isPinging = false
     
     func startPing() {
-        self.timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: (#selector(ping)), userInfo: nil, repeats: true)
+        self.timer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: (#selector(ping)), userInfo: nil, repeats: true)
+//        RunLoop.main.add(timer!, forMode: RunLoopMode.commonModes)
     }
     
-    func ping() {
-        PlainPing.ping("104.160.131.1", withTimeout: 1.0, completionBlock: { (timeElapsed:Double?, error:Error?) in
-            if let latency = timeElapsed {
-                print(String(format: "%.2fms", latency))
-                self.handlePingView(latency: latency)
-            }
-            if let error = error {
-                print("error: \(error.localizedDescription)")
-                self.handlePingError()
-            }
-        })
-        
+    func ping(){
+//        RunLoop.main.perform {
+            PlainPing.ping("104.160.131.1", withTimeout: 1.0, completionBlock: { (timeElapsed:Double?, error:Error?) in
+                if let latency = timeElapsed {
+                    self.handlePingView(latency: latency)
+                }
+                if error != nil {
+                    self.handlePingError()
+                }
+            })
+//        }
     }
     
     func togglePinging(){
