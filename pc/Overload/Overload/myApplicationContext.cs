@@ -10,6 +10,7 @@ using System.Net.NetworkInformation;
 using System.Reflection;
 using System.IO;
 using System.Collections.Concurrent;
+using System.Threading;
 
 namespace Overload
 {
@@ -22,6 +23,7 @@ namespace Overload
         private String curRegion;
         public Dictionary<String, Game> games;
         private FixedSizedQueue<long> pings = new FixedSizedQueue<long>(5);
+        Thread childThread;
 
         // constructor
         public myApplicationContext()
@@ -30,7 +32,8 @@ namespace Overload
             loadGames();
             trayIcon = new NotifyIcon();
             this.curGame = games["League of Legends"]; // defaults to LoL
-            this.curRegion = "US Central";
+            this.curRegion = "NA";
+            childThread = new Thread(() => Ping());
         }
 
         public void loadGames()
@@ -62,33 +65,27 @@ namespace Overload
             trayIcon.ContextMenuStrip = CreateContextMenu();
         }
 
-        // releases resources
-        public void Dispose()
+        public void Ping()
         {
-            trayIcon.Dispose();
-        }
-
-        // Pings server every second for a minute
-        public async Task Ping()
-        {
-
+            //Console.WriteLine("THREAD CREATED");
             String address = curGame.regionsIP[curRegion];
-            
+
             PingReply reply;
             Ping pinger = new Ping();
 
             try
             {
-                for (int i = 0; i < 60; i ++)
+                for (int i = 0; i < 60; i++)
                 {
                     reply = pinger.Send(address);
                     pings.Enqueue(reply.RoundtripTime);
-                    long avgPing = (long) pings.Average();
+                    long avgPing = (long)pings.Average();
                     trayIcon.Text = curGame.title + " " + curRegion + ": " + avgPing;
                     if (avgPing > 100)
                     {
                         trayIcon.Icon = Resources.red_sub;
-                    } else if (avgPing > 60)
+                    }
+                    else if (avgPing > 60)
                     {
                         trayIcon.Icon = Resources.yellow_sub;
                     }
@@ -96,29 +93,39 @@ namespace Overload
                     {
                         trayIcon.Icon = Resources.green_sub;
                     }
-                    await Task.Delay(1000);
+                    Thread.Sleep(1000);
                 }
-                
-                //for (int i = 0; i < iter; i++)
-                //{
-                //    reply = pinger.Send(address);
-
-//                    if (reply.Status == IPStatus.Success)
-//                    {
-//                        sum += Convert.ToInt32(reply.RoundtripTime);
-//                        await Task.Delay(1000);
-//                        trayIcon.Text = "iter: " + i.ToString();
-//                    }
-//               }
             }
+
             catch (PingException)
             {
                 trayIcon.Text = "error";
             }
+        }
 
-            // calulate average ping
-//            average = sum / iter;
-//            trayIcon.Text = title + average.ToString();
+        public void new_Thread()
+        {
+            //Console.WriteLine("CREATING NEW THREAD... ");
+            if (childThread.IsAlive)
+            {
+                childThread.Abort();
+                //Console.WriteLine("THREAD ENDED");
+            }
+            childThread = new Thread(() => Ping());
+            childThread.Start();
+        }
+
+        public void end_Thread() {
+            if (childThread.IsAlive)
+            {
+                childThread.Abort();
+            }
+        }
+
+        // releases resources
+        public void Dispose()
+        {
+            trayIcon.Dispose();
         }
 
         // handles left mouse click
@@ -128,10 +135,10 @@ namespace Overload
             {
                 if (isRunning)
                 {
-
-                } else
+                }
+                else
                 {
-                    Ping();
+                    new_Thread();
                 }
             }
         }
@@ -169,17 +176,20 @@ namespace Overload
         void Overwatch_Click(object sender, EventArgs e)
         {
             curGame = games["Overwatch"];
-            Ping();
+            curRegion = "US Central"; // default until we can handle region changes
+            new_Thread();
         }
 
         void League_Click(object sender, EventArgs e)
         {
             curGame = games["League of Legends"];
-            Ping();
+            curRegion = "NA"; // default until we can handle region changes
+            new_Thread();
         }
 
         void Exit_Click(object sender, EventArgs e)
         {
+            end_Thread();
             Application.Exit();
         }
 
@@ -212,7 +222,7 @@ namespace Overload
 
     public class Game
     {
-        public String title { get; set;}
+        public String title { get; set; }
         public Dictionary<String, String> regionsIP { get; }
 
         public Game(String title)
