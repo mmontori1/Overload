@@ -106,11 +106,7 @@ namespace Overload
         public void new_Thread()
         {
             //Console.WriteLine("CREATING NEW THREAD... ");
-            if (childThread.IsAlive)
-            {
-                childThread.Abort();
-                //Console.WriteLine("THREAD ENDED");
-            }
+            end_Thread();
             childThread = new Thread(() => Ping());
             childThread.Start();
         }
