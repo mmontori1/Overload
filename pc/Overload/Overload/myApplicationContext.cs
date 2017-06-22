@@ -161,6 +161,26 @@ namespace Overload
             item.Click += new EventHandler(OV_US_West_Click);
             submenu.DropDownItems.Add(item);
 
+            item = new ToolStripMenuItem();
+            item.Text = "EU1";
+            item.Click += new EventHandler(OV_EU1_Click);
+            submenu.DropDownItems.Add(item);
+
+            item = new ToolStripMenuItem();
+            item.Text = "EU2";
+            item.Click += new EventHandler(OV_EU2_Click);
+            submenu.DropDownItems.Add(item);
+
+            item = new ToolStripMenuItem();
+            item.Text = "Korea";
+            item.Click += new EventHandler(OV_KOR_Click);
+            submenu.DropDownItems.Add(item);
+
+            item = new ToolStripMenuItem();
+            item.Text = "Taiwan";
+            item.Click += new EventHandler(OV_TAI_Click);
+            submenu.DropDownItems.Add(item);
+
             menu.Items.Add(submenu);
 
             // League submenu
@@ -169,12 +189,27 @@ namespace Overload
 
             item = new ToolStripMenuItem();
             item.Text = "NA";
-            item.Click += new EventHandler(LE_NA_Central_Click);
+            item.Click += new EventHandler(LE_NA_Click);
             submenu.DropDownItems.Add(item);
 
             item = new ToolStripMenuItem();
             item.Text = "EUW";
-            item.Click += new EventHandler(LE_EUW_West_Click);
+            item.Click += new EventHandler(LE_EUW_Click);
+            submenu.DropDownItems.Add(item);
+
+            item = new ToolStripMenuItem();
+            item.Text = "EUNE";
+            item.Click += new EventHandler(LE_EUNE_Click);
+            submenu.DropDownItems.Add(item);
+
+            item = new ToolStripMenuItem();
+            item.Text = "OCE";
+            item.Click += new EventHandler(LE_OCE_Click);
+            submenu.DropDownItems.Add(item);
+
+            item = new ToolStripMenuItem();
+            item.Text = "LAN";
+            item.Click += new EventHandler(LE_LAN_Click);
             submenu.DropDownItems.Add(item);
 
             menu.Items.Add(submenu);
@@ -189,6 +224,8 @@ namespace Overload
             return menu;
         }
 
+
+        // OVERWATCH SUBMENU
         void OV_US_Central_Click(object sender, EventArgs e)
         {
             curGame = games["Overwatch"];
@@ -203,17 +240,68 @@ namespace Overload
             new_Thread();
         }
 
-        void LE_NA_Central_Click(object sender, EventArgs e)
+        void OV_EU1_Click(object sender, EventArgs e)
+        {
+            curGame = games["Overwatch"];
+            curRegion = "EU1";
+            new_Thread();
+        }
+
+        void OV_EU2_Click(object sender, EventArgs e)
+        {
+            curGame = games["Overwatch"];
+            curRegion = "EU2";
+            new_Thread();
+        }
+
+        void OV_KOR_Click(object sender, EventArgs e)
+        {
+            curGame = games["Overwatch"];
+            curRegion = "Korea";
+            new_Thread();
+        }
+
+        void OV_TAI_Click(object sender, EventArgs e)
+        {
+            curGame = games["Overwatch"];
+            curRegion = "Taiwan";
+            new_Thread();
+        }
+
+
+        // LEAGUE SUBMENU
+        void LE_NA_Click(object sender, EventArgs e)
         {
             curGame = games["League of Legends"];
             curRegion = "NA";
             new_Thread();
         }
 
-        void LE_EUW_West_Click(object sender, EventArgs e)
+        void LE_EUW_Click(object sender, EventArgs e)
         {
             curGame = games["League of Legends"];
             curRegion = "EUW";
+            new_Thread();
+        }
+
+        void LE_EUNE_Click(object sender, EventArgs e)
+        {
+            curGame = games["League of Legends"];
+            curRegion = "EUNE";
+            new_Thread();
+        }
+
+        void LE_OCE_Click(object sender, EventArgs e)
+        {
+            curGame = games["League of Legends"];
+            curRegion = "OCE";
+            new_Thread();
+        }
+
+        void LE_LAN_Click(object sender, EventArgs e)
+        {
+            curGame = games["League of Legends"];
+            curRegion = "LAN";
             new_Thread();
         }
 
