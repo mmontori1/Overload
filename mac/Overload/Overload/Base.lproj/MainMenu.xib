@@ -91,9 +91,6 @@
                         <action selector="toggleClicked:" target="ZAf-co-Jvt" id="Gbq-tN-sMc"/>
                     </connections>
                 </menuItem>
-                <menuItem title="Ping View" id="swG-I8-PLX">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                </menuItem>
                 <menuItem isSeparatorItem="YES" id="fVh-45-15z"/>
                 <menuItem title="Quit" id="dCR-tA-Dsd">
                     <modifierMask key="keyEquivalentModifierMask"/>
