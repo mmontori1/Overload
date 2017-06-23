@@ -110,7 +110,8 @@ namespace Overload
             childThread.Start();
         }
 
-        public void end_Thread() {
+        public void end_Thread()
+        {
             if (childThread.IsAlive)
             {
                 childThread.Abort();
@@ -310,40 +311,7 @@ namespace Overload
             end_Thread();
             Application.Exit();
         }
-
-        // ----------------------------------------------
-
-        // create region menustrip
-        public ContextMenuStrip regionMenu()
-        {
-            ContextMenuStrip regionMenu = new ContextMenuStrip();
-            ToolStripMenuItem item;
-
-            if (curGame == games["Overwatch"]) {
-                item = new ToolStripMenuItem();
-                item.Text = "US Central";
-                item.Click += new EventHandler(US_Central_Click);
-                regionMenu.Items.Add(item);
-            }
-            else {
-                item = new ToolStripMenuItem();
-                item.Text = "NA";
-                item.Click += new EventHandler(NA_Click);
-                regionMenu.Items.Add(item);
-            }
-            return regionMenu;
-        }
-
-        void US_Central_Click(object sender, EventArgs e) {
-
-        }
-
-        void NA_Click(object sender, EventArgs e)
-        {
-
-        }
     }
-
 
     public class FixedSizedQueue<T> : ConcurrentQueue<T>
     {
