@@ -22,7 +22,6 @@ class StatusMenuController: NSObject {
     let yellow = NSImage(named: "yellowSub")
     let red = NSImage(named: "redSub")
     
-//    var timer: Timer!
     var timer = Timer()
     var isPinging = false
     
@@ -45,11 +44,13 @@ class StatusMenuController: NSObject {
         if(!isPinging){
             isPinging = true;
             togglePingMenuItem.title = "Stop"
+            self.pingView.ToggleButton.title = "Stop"
             startPing()
         }
         else{
             isPinging = false;
             togglePingMenuItem.title = "Start"
+            self.pingView.ToggleButton.title = "Start"
             timer.invalidate()
             handlePingDefault()
         }
@@ -57,24 +58,30 @@ class StatusMenuController: NSObject {
     
     func handlePingView(latency: Double){
         self.pingView.Latency.stringValue = String(format: "%.2fms", latency)
+        self.pingView.WindowLatency.stringValue = String(format: "%.2fms", latency)
         if 0 < latency && latency < 100 {
             self.statusItem.image = green
             self.pingView.LatencyStatus.image = NSImage(named: NSImageNameStatusAvailable)
+            self.pingView.WindowLatencyStatus.image = NSImage(named: NSImageNameStatusAvailable)
         }
         else if 100 <= latency && latency < 250 {
             self.statusItem.image = yellow
             self.pingView.LatencyStatus.image = NSImage(named: NSImageNameStatusPartiallyAvailable)
+            self.pingView.WindowLatencyStatus.image = NSImage(named: NSImageNameStatusPartiallyAvailable)
         }
         else if 250 <= latency {
             self.statusItem.image = red
             self.pingView.LatencyStatus.image = NSImage(named: NSImageNameStatusUnavailable)
+            self.pingView.WindowLatencyStatus.image = NSImage(named: NSImageNameStatusUnavailable)
         }
     }
     
     func handlePingError(){
         self.statusItem.image = red
         self.pingView.Latency.stringValue = "error"
+        self.pingView.WindowLatency.stringValue = "error"
         self.pingView.LatencyStatus.image = NSImage(named: NSImageNameStatusNone)
+        self.pingView.WindowLatencyStatus.image = NSImage(named: NSImageNameStatusNone)
     }
     
     func handlePingDefault(){
@@ -82,7 +89,9 @@ class StatusMenuController: NSObject {
         DispatchQueue.main.asyncAfter(deadline: delay) {
             self.statusItem.image = self.black
             self.pingView.Latency.stringValue = "---"
+            self.pingView.WindowLatency.stringValue = "---"
             self.pingView.LatencyStatus.image = NSImage(named: NSImageNameStatusNone)
+            self.pingView.WindowLatencyStatus.image = NSImage(named: NSImageNameStatusNone)
         }
     }
     
@@ -95,7 +104,8 @@ class StatusMenuController: NSObject {
         statusItem.menu = statusMenu
     }
     
-    @IBAction func openClicked(_ sender: AnyObject) {
+    @IBAction func windowToggleClicked(_ sender: NSButton) {
+        togglePinging()
     }
     
     @IBAction func toggleClicked(_ sender: NSMenuItem) {
