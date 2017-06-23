@@ -20,5 +20,7 @@ class PingView: NSView {
     @IBOutlet weak var MinLatency: NSTextField!
     @IBOutlet weak var MaxLatency: NSTextField!
     @IBOutlet weak var ToggleButton: NSButton!
+    @IBOutlet weak var GameSelector: NSPopUpButton!
+    @IBOutlet weak var ServerSelector: NSPopUpButton!
 
 }
