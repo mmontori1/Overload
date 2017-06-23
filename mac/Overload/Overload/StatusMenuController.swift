@@ -96,10 +96,10 @@ class StatusMenuController: NSObject {
     }
     
     override func awakeFromNib() {
-        pingMenuItem = statusMenu.item(withTitle: "Ping View")
+//        pingMenuItem = statusMenu.item(withTitle: "Ping View")
         pingView.Latency.stringValue = "---"
         pingView.LatencyStatus.image = NSImage(named: NSImageNameStatusNone)
-        pingMenuItem.view = pingView
+//        pingMenuItem.view = pingView
         statusItem.image = black
         statusItem.menu = statusMenu
     }

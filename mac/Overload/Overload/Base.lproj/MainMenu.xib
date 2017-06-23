@@ -60,13 +60,13 @@
             <connections>
                 <outlet property="AvgLatency" destination="Rbd-Xd-UhB" id="YLi-1q-tu6"/>
                 <outlet property="Latency" destination="Vi5-J9-VUq" id="TyC-gx-aL6"/>
+                <outlet property="LatencyStatus" destination="2YX-f0-fR4" id="A9f-KT-RHt"/>
                 <outlet property="MaxLatency" destination="V6U-nj-BAp" id="9pM-yp-oUb"/>
                 <outlet property="MinLatency" destination="xie-Dz-gvf" id="BSP-M7-0xr"/>
                 <outlet property="ToggleButton" destination="6I9-GU-Q9S" id="Uxp-Ds-Z6b"/>
                 <outlet property="WindowLatency" destination="YaN-Vx-K0U" id="nua-g9-AUJ"/>
                 <outlet property="WindowLatencyStatus" destination="b98-7Y-nXg" id="hYz-71-lh8"/>
                 <outlet property="WindowPingText" destination="44j-r1-u6G" id="t0r-gi-Ele"/>
-                <outlet property="latencyStatus" destination="2YX-f0-fR4" id="Han-zm-Fy2"/>
             </connections>
             <point key="canvasLocation" x="-96" y="244"/>
         </customView>
@@ -135,7 +135,7 @@
                                             </textFieldCell>
                                         </textField>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" id="YaN-Vx-K0U" userLabel="Latency">
-                                            <rect key="frame" x="111" y="123" width="63" height="17"/>
+                                            <rect key="frame" x="110" y="123" width="64" height="17"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="---" id="mCE-Rp-QNK">
                                                 <font key="font" metaFont="system"/>
@@ -282,7 +282,7 @@
                                                 </menu>
                                             </popUpButtonCell>
                                         </popUpButton>
-                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="21N-DC-V3p">
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" id="21N-DC-V3p">
                                             <rect key="frame" x="18" y="102" width="44" height="17"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Game:" id="D8n-pO-PgQ">
@@ -291,8 +291,8 @@
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="YIi-Lv-yJz">
-                                            <rect key="frame" x="18" y="68" width="48" height="17"/>
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" id="YIi-Lv-yJz">
+                                            <rect key="frame" x="18" y="67" width="48" height="17"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Server:" id="XPD-ki-s0k">
                                                 <font key="font" metaFont="system"/>
