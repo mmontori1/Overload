@@ -30,8 +30,8 @@
             <rect key="frame" x="0.0" y="0.0" width="167" height="35"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" id="MBI-eg-arm">
-                    <rect key="frame" x="32" y="10" width="34.5" height="18"/>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" allowsCharacterPickerTouchBarItem="YES" id="MBI-eg-arm">
+                    <rect key="frame" x="32" y="10" width="39" height="18"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Ping: " id="VsH-wD-Pch">
                         <font key="font" metaFont="system"/>
@@ -58,19 +58,25 @@
                 </imageView>
             </subviews>
             <connections>
+                <outlet property="AvgImage" destination="8vv-5m-nAd" id="7KJ-ZL-uRM"/>
                 <outlet property="AvgLatency" destination="Rbd-Xd-UhB" id="YLi-1q-tu6"/>
+                <outlet property="ClearButton" destination="UTo-Lu-FlW" id="lYd-z0-ZZc"/>
                 <outlet property="GameSelector" destination="P38-ig-EWB" id="GOP-dp-hfb"/>
+                <outlet property="IntervalSelector" destination="cQx-f0-7I9" id="48D-Cm-tQ6"/>
                 <outlet property="Latency" destination="Vi5-J9-VUq" id="TyC-gx-aL6"/>
                 <outlet property="LatencyStatus" destination="2YX-f0-fR4" id="A9f-KT-RHt"/>
+                <outlet property="MaxImage" destination="iHG-dK-4aV" id="VXk-J3-K9I"/>
                 <outlet property="MaxLatency" destination="V6U-nj-BAp" id="9pM-yp-oUb"/>
+                <outlet property="MinImage" destination="aYo-DR-j8c" id="pYO-uI-ha0"/>
                 <outlet property="MinLatency" destination="xie-Dz-gvf" id="BSP-M7-0xr"/>
+                <outlet property="PingCount" destination="v09-iA-pmE" id="Hiz-2x-5CJ"/>
                 <outlet property="ServerSelector" destination="jEy-Ve-0MR" id="511-cF-jaF"/>
                 <outlet property="ToggleButton" destination="6I9-GU-Q9S" id="Uxp-Ds-Z6b"/>
                 <outlet property="WindowLatency" destination="YaN-Vx-K0U" id="nua-g9-AUJ"/>
                 <outlet property="WindowLatencyStatus" destination="b98-7Y-nXg" id="hYz-71-lh8"/>
                 <outlet property="WindowPingText" destination="44j-r1-u6G" id="t0r-gi-Ele"/>
             </connections>
-            <point key="canvasLocation" x="-96" y="244"/>
+            <point key="canvasLocation" x="-96.5" y="243.5"/>
         </customView>
         <menu id="VLm-uB-yss">
             <items>
@@ -106,26 +112,26 @@
         <window title="Overload" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="Iam-at-ndE">
             <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="1061" y="564" width="180" height="178"/>
+            <rect key="contentRect" x="1061" y="564" width="180" height="218"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1280" height="777"/>
-            <value key="minSize" type="size" width="180" height="178"/>
-            <value key="maxSize" type="size" width="180" height="178"/>
-            <view key="contentView" id="VOY-5O-Hty">
-                <rect key="frame" x="0.0" y="0.0" width="180" height="178"/>
+            <value key="minSize" type="size" width="180" height="218"/>
+            <value key="maxSize" type="size" width="180" height="218"/>
+            <view key="contentView" misplaced="YES" id="VOY-5O-Hty">
+                <rect key="frame" x="0.0" y="0.0" width="180" height="218"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <tabView id="HMk-X3-L1B" userLabel="(Ping, Preferences)">
-                        <rect key="frame" x="-8" y="-10" width="196" height="194"/>
+                    <tabView misplaced="YES" id="HMk-X3-L1B" userLabel="(Ping, Preferences)">
+                        <rect key="frame" x="-8" y="-10" width="196" height="234"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <font key="font" metaFont="system"/>
                         <tabViewItems>
                             <tabViewItem label="Ping" identifier="1" id="ZkS-Dj-tyZ" userLabel="Ping">
                                 <view key="view" wantsLayer="YES" id="ayy-MA-vzd">
-                                    <rect key="frame" x="10" y="33" width="176" height="148"/>
+                                    <rect key="frame" x="10" y="33" width="176" height="188"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" allowsCharacterPickerTouchBarItem="YES" id="44j-r1-u6G" userLabel="Ping:">
-                                            <rect key="frame" x="76" y="123" width="45" height="17"/>
+                                            <rect key="frame" x="32" y="117" width="45" height="22"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Ping: " id="eQq-CL-VMk">
                                                 <font key="font" metaFont="system"/>
@@ -134,7 +140,7 @@
                                             </textFieldCell>
                                         </textField>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" allowsCharacterPickerTouchBarItem="YES" id="YaN-Vx-K0U" userLabel="Latency">
-                                            <rect key="frame" x="110" y="123" width="64" height="17"/>
+                                            <rect key="frame" x="66" y="122" width="64" height="17"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="---" id="mCE-Rp-QNK">
                                                 <font key="font" metaFont="system"/>
@@ -142,8 +148,26 @@
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" id="ZBh-xP-jZX">
-                                            <rect key="frame" x="35" y="66" width="39" height="17"/>
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" allowsCharacterPickerTouchBarItem="YES" id="5lN-gE-oFB" userLabel="Times Pinged:">
+                                            <rect key="frame" x="18" y="137" width="90" height="22"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Times Pinged:" id="Pt5-7b-Uhe">
+                                                <font key="font" metaFont="system"/>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" allowsCharacterPickerTouchBarItem="YES" id="v09-iA-pmE" userLabel="Count">
+                                            <rect key="frame" x="113" y="142" width="46" height="17"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="0" id="UtL-XD-oMJ">
+                                                <font key="font" metaFont="system"/>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" allowsCharacterPickerTouchBarItem="YES" id="ZBh-xP-jZX">
+                                            <rect key="frame" x="35" y="65" width="39" height="19"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Avg:" id="oXi-Rg-SEs">
                                                 <font key="font" metaFont="system"/>
@@ -151,8 +175,8 @@
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" id="Rbd-Xd-UhB" userLabel="Latency">
-                                            <rect key="frame" x="71" y="66" width="71" height="17"/>
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" allowsCharacterPickerTouchBarItem="YES" id="Rbd-Xd-UhB" userLabel="Latency">
+                                            <rect key="frame" x="71" y="67" width="71" height="17"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="---" id="3li-ay-SXX">
                                                 <font key="font" metaFont="system"/>
@@ -160,8 +184,8 @@
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" id="knc-v8-2CT">
-                                            <rect key="frame" x="35" y="40" width="39" height="18"/>
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" allowsCharacterPickerTouchBarItem="YES" id="knc-v8-2CT">
+                                            <rect key="frame" x="35" y="40" width="39" height="19"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Min:" id="NFY-Nx-dXN">
                                                 <font key="font" metaFont="system"/>
@@ -169,8 +193,8 @@
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" id="xie-Dz-gvf" userLabel="Latency">
-                                            <rect key="frame" x="71" y="41" width="71" height="17"/>
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" allowsCharacterPickerTouchBarItem="YES" id="xie-Dz-gvf" userLabel="Latency">
+                                            <rect key="frame" x="71" y="42" width="71" height="17"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="---" id="Eod-m0-awb">
                                                 <font key="font" metaFont="system"/>
@@ -178,8 +202,8 @@
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" id="Zga-ch-h8B">
-                                            <rect key="frame" x="35" y="16" width="39" height="17"/>
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" allowsCharacterPickerTouchBarItem="YES" id="Zga-ch-h8B">
+                                            <rect key="frame" x="35" y="15" width="39" height="19"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Max:" id="KmT-Yd-We2">
                                                 <font key="font" metaFont="system"/>
@@ -187,8 +211,8 @@
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" id="V6U-nj-BAp" userLabel="Latency">
-                                            <rect key="frame" x="71" y="16" width="71" height="17"/>
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" allowsCharacterPickerTouchBarItem="YES" id="V6U-nj-BAp" userLabel="Latency">
+                                            <rect key="frame" x="71" y="17" width="71" height="17"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="---" id="yT8-xL-Ois">
                                                 <font key="font" metaFont="system"/>
@@ -197,7 +221,7 @@
                                             </textFieldCell>
                                         </textField>
                                         <button verticalHuggingPriority="750" misplaced="YES" id="6I9-GU-Q9S">
-                                            <rect key="frame" x="-3" y="112" width="68" height="32"/>
+                                            <rect key="frame" x="14" y="157" width="68" height="32"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="push" title="Start" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="BxC-t5-tKl">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -207,8 +231,8 @@
                                                 <action selector="windowToggleClicked:" target="ZAf-co-Jvt" id="KZ6-I9-d1V"/>
                                             </connections>
                                         </button>
-                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" id="eTw-nj-33h">
-                                            <rect key="frame" x="67" y="92" width="36" height="17"/>
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" allowsCharacterPickerTouchBarItem="YES" id="eTw-nj-33h">
+                                            <rect key="frame" x="67" y="93" width="36" height="17"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Stats" id="lWh-IF-fYt">
                                                 <font key="font" metaFont="system"/>
@@ -216,43 +240,54 @@
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <box verticalHuggingPriority="750" boxType="separator" id="gME-Uw-290">
-                                            <rect key="frame" x="4" y="87" width="168" height="44"/>
+                                        <box verticalHuggingPriority="750" misplaced="YES" boxType="separator" id="gME-Uw-290">
+                                            <rect key="frame" x="4" y="92" width="168" height="44"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         </box>
                                         <imageView misplaced="YES" id="b98-7Y-nXg">
-                                            <rect key="frame" x="61" y="123" width="15" height="15"/>
+                                            <rect key="frame" x="17" y="122" width="15" height="15"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <shadow key="shadow">
                                                 <color key="color" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                             </shadow>
                                             <imageCell key="cell" selectable="YES" editable="YES" enabled="NO" alignment="left" animates="YES" imageScaling="proportionallyDown" image="NSStatusNone" id="voX-dz-GSL"/>
                                         </imageView>
-                                        <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" id="8vv-5m-nAd">
-                                            <rect key="frame" x="12" y="64" width="22" height="22"/>
+                                        <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" id="8vv-5m-nAd">
+                                            <rect key="frame" x="12" y="65" width="22" height="22"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="yellowSub" id="PFo-r8-ae0"/>
+                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="PFo-r8-ae0"/>
                                         </imageView>
-                                        <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" id="iHG-dK-4aV">
-                                            <rect key="frame" x="12" y="14" width="22" height="22"/>
+                                        <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" id="iHG-dK-4aV">
+                                            <rect key="frame" x="12" y="15" width="22" height="22"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="redSub" id="yP5-11-yQJ"/>
+                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="yP5-11-yQJ"/>
                                         </imageView>
-                                        <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" id="aYo-DR-j8c">
-                                            <rect key="frame" x="12" y="39" width="22" height="22"/>
+                                        <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" id="aYo-DR-j8c">
+                                            <rect key="frame" x="12" y="40" width="22" height="22"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="greenSub" id="sYn-rq-j1X"/>
+                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="sYn-rq-j1X"/>
                                         </imageView>
+                                        <button verticalHuggingPriority="750" misplaced="YES" id="UTo-Lu-FlW">
+                                            <rect key="frame" x="85" y="157" width="72" height="32"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <buttonCell key="cell" type="push" title="Clear" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="KZe-11-s7O">
+                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="clearClicked:" target="ZAf-co-Jvt" id="ls2-xA-tXP"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                 </view>
                             </tabViewItem>
                             <tabViewItem label="Settings" identifier="2" id="vAS-t5-uv1" userLabel="Settings">
                                 <view key="view" id="9Ys-Ie-7kG">
-                                    <rect key="frame" x="10" y="33" width="176" height="148"/>
+                                    <rect key="frame" x="10" y="33" width="176" height="188"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <popUpButton verticalHuggingPriority="750" misplaced="YES" id="P38-ig-EWB">
-                                            <rect key="frame" x="55" y="96" width="120" height="26"/>
+                                            <rect key="frame" x="55" y="136" width="120" height="26"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="iZy-dH-UVp">
                                                 <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -264,7 +299,7 @@
                                             </connections>
                                         </popUpButton>
                                         <popUpButton verticalHuggingPriority="750" misplaced="YES" id="jEy-Ve-0MR">
-                                            <rect key="frame" x="55" y="61" width="120" height="26"/>
+                                            <rect key="frame" x="55" y="101" width="120" height="26"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="lUl-yW-npI">
                                                 <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -273,7 +308,7 @@
                                             </popUpButtonCell>
                                         </popUpButton>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" allowsCharacterPickerTouchBarItem="YES" id="21N-DC-V3p">
-                                            <rect key="frame" x="7" y="102" width="44" height="17"/>
+                                            <rect key="frame" x="7" y="142" width="44" height="17"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Game:" id="D8n-pO-PgQ">
                                                 <font key="font" metaFont="system"/>
@@ -282,7 +317,7 @@
                                             </textFieldCell>
                                         </textField>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" allowsCharacterPickerTouchBarItem="YES" id="YIi-Lv-yJz">
-                                            <rect key="frame" x="7" y="67" width="48" height="17"/>
+                                            <rect key="frame" x="7" y="107" width="48" height="17"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Server:" id="XPD-ki-s0k">
                                                 <font key="font" metaFont="system"/>
@@ -291,29 +326,11 @@
                                             </textFieldCell>
                                         </textField>
                                         <box verticalHuggingPriority="750" boxType="separator" id="mKp-EB-2QZ">
-                                            <rect key="frame" x="4" y="124" width="168" height="5"/>
+                                            <rect key="frame" x="4" y="164" width="168" height="5"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         </box>
-                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" id="z1H-CN-FQV">
-                                            <rect key="frame" x="43" y="35" width="83" height="17"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="App Settings" id="lXI-us-89m">
-                                                <font key="font" metaFont="system"/>
-                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                            </textFieldCell>
-                                        </textField>
-                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" id="C9Z-8x-Cri">
-                                            <rect key="frame" x="64" y="9" width="70" height="17"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="is a WIP :)" id="sNq-U7-y5f">
-                                                <font key="font" metaFont="system"/>
-                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                            </textFieldCell>
-                                        </textField>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" id="sOw-Mw-6bE">
-                                            <rect key="frame" x="43" y="128" width="85" height="17"/>
+                                            <rect key="frame" x="43" y="168" width="85" height="17"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Ping Settings" id="acT-W7-jLw">
                                                 <font key="font" metaFont="system"/>
@@ -321,15 +338,36 @@
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <box verticalHuggingPriority="750" boxType="separator" id="PHY-ET-tDL">
-                                            <rect key="frame" x="4" y="30" width="168" height="5"/>
+                                        <box verticalHuggingPriority="750" misplaced="YES" boxType="separator" id="PHY-ET-tDL">
+                                            <rect key="frame" x="4" y="50" width="168" height="5"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         </box>
-                                        <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" id="Ysl-dv-BA1">
-                                            <rect key="frame" x="37" y="5" width="22" height="22"/>
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" allowsCharacterPickerTouchBarItem="YES" id="pkp-7W-QhI">
+                                            <rect key="frame" x="7" y="74" width="86" height="17"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="statusIcon" id="IRG-li-pJ2"/>
-                                        </imageView>
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Time Interval:" id="RYS-GY-hA8">
+                                                <font key="font" metaFont="system"/>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                        <popUpButton verticalHuggingPriority="750" misplaced="YES" id="cQx-f0-7I9">
+                                            <rect key="frame" x="99" y="68" width="76" height="26"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <popUpButtonCell key="cell" type="push" title="2" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="ojm-IC-dWD" id="4bG-Vr-Lea">
+                                                <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="menu"/>
+                                                <menu key="menu" id="hMR-iw-jU2">
+                                                    <items>
+                                                        <menuItem title="1" id="VBU-gF-HD2"/>
+                                                        <menuItem title="2" state="on" id="ojm-IC-dWD"/>
+                                                        <menuItem title="3" id="kNe-cg-FQ2"/>
+                                                        <menuItem title="4" id="2YQ-h0-UhL"/>
+                                                        <menuItem title="5" id="MHb-Wi-7E1"/>
+                                                    </items>
+                                                </menu>
+                                            </popUpButtonCell>
+                                        </popUpButton>
                                     </subviews>
                                 </view>
                             </tabViewItem>
@@ -337,14 +375,10 @@
                     </tabView>
                 </subviews>
             </view>
-            <point key="canvasLocation" x="-376" y="127"/>
+            <point key="canvasLocation" x="-376" y="147"/>
         </window>
     </objects>
     <resources>
         <image name="NSStatusNone" width="16" height="16"/>
-        <image name="greenSub" width="64" height="64"/>
-        <image name="redSub" width="64" height="64"/>
-        <image name="statusIcon" width="24" height="24"/>
-        <image name="yellowSub" width="64" height="64"/>
     </resources>
 </document>

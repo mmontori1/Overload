@@ -22,6 +22,7 @@ class StatusMenuController: NSObject {
     let yellow = NSImage(named: "yellowSub")
     let red = NSImage(named: "redSub")
     
+    var counter:Int = 0
     var timer = Timer()
     var isPinging = false
     var statsBucket:[Double] = []
@@ -29,12 +30,13 @@ class StatusMenuController: NSObject {
     var games:[String:[String:String]] = [:]
     
     func startPing() {
-        self.timer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: (#selector(ping)), userInfo: nil, repeats: true)
+        let interval = Double(self.pingView.IntervalSelector.titleOfSelectedItem!)!
+        self.timer = Timer.scheduledTimer(timeInterval: interval, target: self, selector: (#selector(ping)), userInfo: nil, repeats: true)
     }
     
     func ping(){
-        print(games[self.pingView.GameSelector.titleOfSelectedItem!]![self.pingView.ServerSelector.titleOfSelectedItem!]!)
-        PlainPing.ping(games[self.pingView.GameSelector.titleOfSelectedItem!]![self.pingView.ServerSelector.titleOfSelectedItem!]!, withTimeout: 1.0, completionBlock: { (timeElapsed:Double?, error:Error?) in
+        let ip = games[self.pingView.GameSelector.titleOfSelectedItem!]![self.pingView.ServerSelector.titleOfSelectedItem!]!
+        PlainPing.ping(ip, withTimeout: 0.8, completionBlock: { (timeElapsed:Double?, error:Error?) in
             if let latency = timeElapsed {
                 self.handlePingView(latency: latency)
             }
@@ -44,21 +46,27 @@ class StatusMenuController: NSObject {
         })
     }
     
+    func toggleEnabled(value: Bool){
+        self.pingView.GameSelector.isEnabled = value;
+        self.pingView.ServerSelector.isEnabled = value;
+        self.pingView.IntervalSelector.isEnabled = value;
+        self.pingView.ClearButton.isEnabled = value;
+    }
+    
     func togglePinging(){
         if(!isPinging){
             isPinging = true;
             togglePingMenuItem.title = "Stop"
             self.pingView.ToggleButton.title = "Stop"
-            self.pingView.GameSelector.isEnabled = false;
-            self.pingView.ServerSelector.isEnabled = false;
+            toggleEnabled(value: false)
             startPing()
         }
         else{
             isPinging = false;
             togglePingMenuItem.title = "Start"
             self.pingView.ToggleButton.title = "Start"
-            self.pingView.GameSelector.isEnabled = true;
-            self.pingView.ServerSelector.isEnabled = true;
+            toggleEnabled(value: true)
+            counter = 0
             calculateStats()
             timer.invalidate()
             handlePingDefault()
@@ -67,7 +75,8 @@ class StatusMenuController: NSObject {
     
     func handlePingView(latency: Double){
         statsBucket.append(latency)
-        print(String(format: "%.2fms", latency))
+        counter += 1
+        self.pingView.PingCount.stringValue = String(counter)
         self.pingView.WindowLatency.stringValue = String(format: "%.2fms", latency)
         if 0 < latency && latency < 100 {
             self.pingView.WindowLatencyStatus.image = NSImage(named: NSImageNameStatusAvailable)
@@ -93,11 +102,27 @@ class StatusMenuController: NSObject {
         }
     }
     
+    func changeStats(latency: Double, text: NSTextField, imageView: NSImageView){
+        text.stringValue = String(format: "%.2fms", latency)
+        if 0 < latency && latency < 100 {
+            imageView.image = green
+        }
+        else if 100 <= latency && latency < 250 {
+            imageView.image = yellow
+        }
+        else if 250 <= latency {
+            imageView.image = red
+        }
+    }
+    
     func calculateStats(){
         if !statsBucket.isEmpty {
-            self.pingView.AvgLatency.stringValue = String(format: "%.2fms", (statsBucket.reduce(0,+)/Double(statsBucket.count)))
-            self.pingView.MinLatency.stringValue = String(format: "%.2fms", statsBucket.min()!)
-            self.pingView.MaxLatency.stringValue = String(format: "%.2fms", statsBucket.max()!)
+            let avgLatency = (statsBucket.reduce(0,+)/Double(statsBucket.count))
+            let minLatency = statsBucket.min()!
+            let maxLatency = statsBucket.max()!
+            changeStats(latency: avgLatency, text: self.pingView.AvgLatency, imageView: self.pingView.AvgImage)
+            changeStats(latency: minLatency, text: self.pingView.MinLatency, imageView: self.pingView.MinImage)
+            changeStats(latency: maxLatency, text: self.pingView.MaxLatency, imageView: self.pingView.MaxImage)
             statsBucket.removeAll()
         }
     }
@@ -132,9 +157,22 @@ class StatusMenuController: NSObject {
         }
     }
     
+    func clearView(){
+        self.pingView.WindowLatency.stringValue = "---"
+        self.pingView.WindowLatencyStatus.image = NSImage(named: NSImageNameStatusNone)
+        self.pingView.AvgImage.image = black
+        self.pingView.MinImage.image = black
+        self.pingView.MaxImage.image = black
+        self.pingView.AvgLatency.stringValue = "---"
+        self.pingView.MinLatency.stringValue = "---"
+        self.pingView.MaxLatency.stringValue = "---"
+        self.pingView.PingCount.stringValue = "0"
+    }
+    
     override func awakeFromNib() {
         statusItem.image = black
         statusItem.menu = statusMenu
+        clearView()
         addGames()
         updateServerSelector()
     }
@@ -149,6 +187,10 @@ class StatusMenuController: NSObject {
     
     @IBAction func toggleClicked(_ sender: NSMenuItem) {
         togglePinging()
+    }
+    
+    @IBAction func clearClicked(_ sender: NSButton) {
+        clearView()
     }
     
     @IBAction func quitClicked(sender: NSMenuItem) {
