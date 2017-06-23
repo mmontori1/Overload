@@ -24,6 +24,7 @@ class StatusMenuController: NSObject {
     
     var timer = Timer()
     var isPinging = false
+    var statsBucket:[Double] = []
     
     func startPing() {
         self.timer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: (#selector(ping)), userInfo: nil, repeats: true)
@@ -51,62 +52,55 @@ class StatusMenuController: NSObject {
             isPinging = false;
             togglePingMenuItem.title = "Start"
             self.pingView.ToggleButton.title = "Start"
+            calculateStats()
             timer.invalidate()
             handlePingDefault()
         }
     }
     
     func handlePingView(latency: Double){
-//        self.pingView.Latency.stringValue = String(format: "%.2fms", latency)
+        statsBucket.append(latency)
+        print(String(format: "%.2fms", latency))
         self.pingView.WindowLatency.stringValue = String(format: "%.2fms", latency)
         if 0 < latency && latency < 100 {
-//            self.statusItem.image = green
-//            self.pingView.LatencyStatus.image = NSImage(named: NSImageNameStatusAvailable)
             self.pingView.WindowLatencyStatus.image = NSImage(named: NSImageNameStatusAvailable)
         }
         else if 100 <= latency && latency < 250 {
-//            self.statusItem.image = yellow
-//            self.pingView.LatencyStatus.image = NSImage(named: NSImageNameStatusPartiallyAvailable)
             self.pingView.WindowLatencyStatus.image = NSImage(named: NSImageNameStatusPartiallyAvailable)
         }
         else if 250 <= latency {
-//            self.statusItem.image = red
-//            self.pingView.LatencyStatus.image = NSImage(named: NSImageNameStatusUnavailable)
             self.pingView.WindowLatencyStatus.image = NSImage(named: NSImageNameStatusUnavailable)
         }
     }
     
     func handlePingError(){
-//        self.statusItem.image = red
-//        self.pingView.Latency.stringValue = "error"
         self.pingView.WindowLatency.stringValue = "error"
-//        self.pingView.LatencyStatus.image = NSImage(named: NSImageNameStatusNone)
         self.pingView.WindowLatencyStatus.image = NSImage(named: NSImageNameStatusNone)
     }
     
     func handlePingDefault(){
         let delay = DispatchTime.now() + 1
         DispatchQueue.main.asyncAfter(deadline: delay) {
-//            self.statusItem.image = self.black
-//            self.pingView.Latency.stringValue = "---"
             self.pingView.WindowLatency.stringValue = "---"
-//            self.pingView.LatencyStatus.image = NSImage(named: NSImageNameStatusNone)
             self.pingView.WindowLatencyStatus.image = NSImage(named: NSImageNameStatusNone)
         }
     }
     
+    func calculateStats(){
+        if !statsBucket.isEmpty {
+            self.pingView.AvgLatency.stringValue = String(format: "%.2fms", (statsBucket.reduce(0,+)/Double(statsBucket.count)))
+            self.pingView.MinLatency.stringValue = String(format: "%.2fms", statsBucket.min()!)
+            self.pingView.MaxLatency.stringValue = String(format: "%.2fms", statsBucket.max()!)
+            statsBucket.removeAll()
+        }
+    }
+    
     override func awakeFromNib() {
-//        pingMenuItem = statusMenu.item(withTitle: "Ping View")
-//        pingView.Latency.stringValue = "---"
-//        pingView.LatencyStatus.image = NSImage(named: NSImageNameStatusNone)
-//        pingMenuItem.view = pingView
         statusItem.image = black
         statusItem.menu = statusMenu
     }
     
     @IBAction func windowToggleClicked(_ sender: NSButton) {
-//        let votes:[Double] = [1, 2, 3, 4.2, 5, 6, 7, 8, 9, 10]
-//        print(votes.reduce(0, +)/Double(votes.count))
         togglePinging()
     }
     
