@@ -25,16 +25,8 @@ class StatusMenuController: NSObject {
     var timer = Timer()
     var isPinging = false
     var statsBucket:[Double] = []
-    
-    struct Game{
-        var name:String
-        var servers:[String: String]
-    }
-    
-    var games:[String:[String: String]] = [:]
-    
-    var league = Game(name: "League", servers: ["NA" : "104.160.131.3", "EUW" : "104.160.141.3", "EUNE" : "104.160.142.3", "OCE" : "104.160.156.1", "LAN" : "104.160.136.3"])
-    var overwatch = Game(name: "Overwatch", servers: ["US West" : "24.105.30.129", "US Central" : "24.105.62.129", "EU1" : "185.60.114.159", "EU2" : "185.60.112.157", "Korea" : "211.234.110.1", "Taiwan" : "203.66.81.98"])
+    var names:[String] = ["League", "Overwatch"]
+    var games:[String:[String:String]] = [:]
     
     func startPing() {
         self.timer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: (#selector(ping)), userInfo: nil, repeats: true)
@@ -57,12 +49,16 @@ class StatusMenuController: NSObject {
             isPinging = true;
             togglePingMenuItem.title = "Stop"
             self.pingView.ToggleButton.title = "Stop"
+            self.pingView.GameSelector.isEnabled = false;
+            self.pingView.ServerSelector.isEnabled = false;
             startPing()
         }
         else{
             isPinging = false;
             togglePingMenuItem.title = "Start"
             self.pingView.ToggleButton.title = "Start"
+            self.pingView.GameSelector.isEnabled = true;
+            self.pingView.ServerSelector.isEnabled = true;
             calculateStats()
             timer.invalidate()
             handlePingDefault()
@@ -106,17 +102,30 @@ class StatusMenuController: NSObject {
         }
     }
     
+    func addGames(){
+        games["League"] = ["NA" : "104.160.131.3", "EUW" : "104.160.141.3", "EUNE" : "104.160.142.3", "OCE" : "104.160.156.1", "LAN" : "104.160.136.3"]
+        games["Overwatch"] = ["US West" : "24.105.30.129", "US Central" : "24.105.62.129", "EU1" : "185.60.114.159", "EU2" : "185.60.112.157", "Korea" : "211.234.110.1", "Taiwan" : "203.66.81.98"]
+        for game in names{
+            pingView.GameSelector.addItem(withTitle: game)
+        }
+    }
+    
+    func addServers(game: String){
+        for server in games[game]! {
+            pingView.ServerSelector.addItem(withTitle: server.key)
+        }
+    }
+    
     func updateServerSelector(){
         pingView.ServerSelector.removeAllItems()
-        for server in games[self.pingView.GameSelector.titleOfSelectedItem!]!.keys {
-            pingView.ServerSelector.addItem(withTitle: server)
-        }
         switch self.pingView.GameSelector.titleOfSelectedItem! {
-            case league.name:
+            case "League":
+                addServers(game: "League")
                 self.pingView.ServerSelector.selectItem(withTitle: "NA")
                 break
-            case overwatch.name:
-                self.pingView.ServerSelector.selectItem(withTitle: "US Central")
+            case "Overwatch":
+                addServers(game: "Overwatch")
+                self.pingView.ServerSelector.selectItem(withTitle: "US West")
                 break
             default:
                 break
@@ -126,10 +135,7 @@ class StatusMenuController: NSObject {
     override func awakeFromNib() {
         statusItem.image = black
         statusItem.menu = statusMenu
-        games[league.name] = league.servers
-        games[overwatch.name] = overwatch.servers
-        pingView.GameSelector.addItem(withTitle: league.name)
-        pingView.GameSelector.addItem(withTitle: overwatch.name)
+        addGames()
         updateServerSelector()
     }
     
