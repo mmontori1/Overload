@@ -23,6 +23,7 @@ namespace Overload
         public Dictionary<String, Game> games;
         private FixedSizedQueue<long> pings = new FixedSizedQueue<long>(5);
         Thread childThread;
+        bool isAboutLoaded;
 
         // constructor
         public myApplicationContext()
@@ -33,6 +34,7 @@ namespace Overload
             this.curGame = games["League of Legends"]; // defaults to LoL
             this.curRegion = "NA";
             childThread = new Thread(() => Ping());
+            isAboutLoaded = false;
         }
 
         public void loadGames()
@@ -115,12 +117,6 @@ namespace Overload
             {
                 childThread.Abort();
             }
-        }
-
-        // releases resources
-        public void Dispose()
-        {
-            trayIcon.Dispose();
         }
 
         // handles left mouse click
@@ -214,6 +210,11 @@ namespace Overload
 
             menu.Items.Add(submenu);
 
+            // About tab
+            item = new ToolStripMenuItem();
+            item.Text = "About";
+            item.Click += new System.EventHandler(About_Click);
+            menu.Items.Add(item);
 
             // Exit tab
             item = new ToolStripMenuItem();
@@ -303,6 +304,15 @@ namespace Overload
             curGame = games["League of Legends"];
             curRegion = "LAN";
             new_Thread();
+        }
+
+        void About_Click(object sender, EventArgs e)
+        {
+            if (!isAboutLoaded) {
+                isAboutLoaded = true;
+                new AboutBox1().ShowDialog();
+                isAboutLoaded = false;
+            }
         }
 
         void Exit_Click(object sender, EventArgs e)
