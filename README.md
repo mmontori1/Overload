@@ -18,6 +18,8 @@ Once the app is running, click on the submarine icon on the menu bar, and it'll 
 
 ## PC
 
+Once the app is running, right click the submarine icon and select the game and server in the context menu. To check your ping, hover your mouse over the icon for an exact value.
+
 # How to check out the source code
 ## Mac
 
@@ -31,6 +33,8 @@ Open the Overload.xcworkspace file, and you should be ready to go!
 
 ## PC
 
+If you don't already have Microsoft Visual Studio, make sure to download it. Clone the source code, and navigate to the Overload.sln. Double click the file and the project should open up in Visual Studio.
+
 # How to download the App
 
 We haven't submitted the application for the App Store or Windows Store, so you can check out the current build from here.
@@ -39,4 +43,4 @@ We haven't submitted the application for the App Store or Windows Store, so you 
 Drag and Drop the Overload.app from the builds folder, and run it!
 
 ## PC
-
+Download OverloadSetup.msi from the build folder. After following the setup prompt, there should be a new desktop shortcut labeled: Overload (Active). 
