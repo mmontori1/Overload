@@ -17,6 +17,7 @@ class PingView: NSView {
     @IBOutlet weak var WindowPingText: NSTextField!
     @IBOutlet weak var WindowLatency: NSTextField!
     @IBOutlet weak var PingCount: NSTextField!
+    @IBOutlet weak var ErrorCount: NSTextField!
     @IBOutlet weak var AvgImage: NSImageView!
     @IBOutlet weak var AvgLatency: NSTextField!
     @IBOutlet weak var MinImage: NSImageView!
@@ -28,5 +29,7 @@ class PingView: NSView {
     @IBOutlet weak var GameSelector: NSPopUpButton!
     @IBOutlet weak var ServerSelector: NSPopUpButton!
     @IBOutlet weak var IntervalSelector: NSPopUpButton!
+    @IBOutlet weak var AutoStopCheckbox: NSButton!
+    @IBOutlet weak var AutoStopSelector: NSPopUpButton!
 
 }

@@ -23,8 +23,11 @@ class StatusMenuController: NSObject {
     let red = NSImage(named: "redSub")
     
     var counter:Int = 0
+    var errors:Int = 0
     var timer = Timer()
+    var stopTimer = Timer()
     var isPinging = false
+    var autoStopEnabled = true
     var statsBucket:[Double] = []
     var names:[String] = ["League", "Overwatch"]
     var games:[String:[String:String]] = [:]
@@ -47,18 +50,24 @@ class StatusMenuController: NSObject {
     }
     
     func toggleEnabled(value: Bool){
-        self.pingView.GameSelector.isEnabled = value;
-        self.pingView.ServerSelector.isEnabled = value;
-        self.pingView.IntervalSelector.isEnabled = value;
-        self.pingView.ClearButton.isEnabled = value;
+        self.pingView.GameSelector.isEnabled = value
+        self.pingView.ServerSelector.isEnabled = value
+        self.pingView.IntervalSelector.isEnabled = value
+        self.pingView.AutoStopSelector.isEnabled = value
+        self.pingView.AutoStopCheckbox.isEnabled = value
+        self.pingView.ClearButton.isEnabled = value
     }
     
     func togglePinging(){
-        if(!isPinging){
+        if !isPinging {
             isPinging = true;
             togglePingMenuItem.title = "Stop"
             self.pingView.ToggleButton.title = "Stop"
             toggleEnabled(value: false)
+            if autoStopEnabled {
+                let stopInterval = Double(self.pingView.AutoStopSelector.titleOfSelectedItem!)
+                self.stopTimer = Timer.scheduledTimer(timeInterval: stopInterval!, target: self, selector: (#selector(togglePinging)), userInfo: nil, repeats: false)
+            }
             startPing()
         }
         else{
@@ -67,6 +76,10 @@ class StatusMenuController: NSObject {
             self.pingView.ToggleButton.title = "Start"
             toggleEnabled(value: true)
             counter = 0
+            errors = 0
+            if autoStopEnabled {
+                self.stopTimer.invalidate()
+            }
             calculateStats()
             timer.invalidate()
             handlePingDefault()
@@ -90,6 +103,8 @@ class StatusMenuController: NSObject {
     }
     
     func handlePingError(){
+        self.errors += 1
+        self.pingView.ErrorCount.stringValue = String(errors)
         self.pingView.WindowLatency.stringValue = "error"
         self.pingView.WindowLatencyStatus.image = NSImage(named: NSImageNameStatusNone)
     }
@@ -167,6 +182,7 @@ class StatusMenuController: NSObject {
         self.pingView.MinLatency.stringValue = "---"
         self.pingView.MaxLatency.stringValue = "---"
         self.pingView.PingCount.stringValue = "0"
+        self.pingView.ErrorCount.stringValue = "0"
     }
     
     override func awakeFromNib() {
@@ -191,6 +207,17 @@ class StatusMenuController: NSObject {
     
     @IBAction func clearClicked(_ sender: NSButton) {
         clearView()
+    }
+    
+    @IBAction func autoStopClicked(_ sender: NSButton) {
+        if autoStopEnabled {
+            autoStopEnabled = false
+            self.pingView.AutoStopSelector.isEnabled = false;
+        }
+        else {
+            autoStopEnabled = true
+            self.pingView.AutoStopSelector.isEnabled = true;
+        }
     }
     
     @IBAction func quitClicked(sender: NSMenuItem) {
