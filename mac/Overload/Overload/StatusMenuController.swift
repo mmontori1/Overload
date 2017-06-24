@@ -21,7 +21,8 @@ class StatusMenuController: NSObject {
     let green = NSImage(named: "greenSub")
     let yellow = NSImage(named: "yellowSub")
     let red = NSImage(named: "redSub")
-    
+    let pingRangeGreen:Double = 100
+    let pingRangeYellow:Double = 200
     var counter:Int = 0
     var errors:Int = 0
     var timer = Timer()
@@ -91,13 +92,13 @@ class StatusMenuController: NSObject {
         counter += 1
         self.pingView.PingCount.stringValue = String(counter)
         self.pingView.WindowLatency.stringValue = String(format: "%.2fms", latency)
-        if 0 < latency && latency < 100 {
+        if 0 < latency && latency < pingRangeGreen {
             self.pingView.WindowLatencyStatus.image = NSImage(named: NSImageNameStatusAvailable)
         }
-        else if 100 <= latency && latency < 250 {
+        else if pingRangeGreen <= latency && latency < pingRangeYellow {
             self.pingView.WindowLatencyStatus.image = NSImage(named: NSImageNameStatusPartiallyAvailable)
         }
-        else if 250 <= latency {
+        else if pingRangeYellow <= latency {
             self.pingView.WindowLatencyStatus.image = NSImage(named: NSImageNameStatusUnavailable)
         }
     }
@@ -119,13 +120,13 @@ class StatusMenuController: NSObject {
     
     func changeStats(latency: Double, text: NSTextField, imageView: NSImageView){
         text.stringValue = String(format: "%.2fms", latency)
-        if 0 < latency && latency < 100 {
+        if 0 < latency && latency < pingRangeGreen {
             imageView.image = green
         }
-        else if 100 <= latency && latency < 250 {
+        else if pingRangeGreen <= latency && latency < pingRangeYellow {
             imageView.image = yellow
         }
-        else if 250 <= latency {
+        else if pingRangeYellow <= latency {
             imageView.image = red
         }
     }
