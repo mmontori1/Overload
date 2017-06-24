@@ -9,7 +9,7 @@ Are you tired of jumping into a ranked game, and finding out you're getting ping
 
 # Project Description
 
-This project was started during MHacks Nano. You can check out the devpost here. Our goal was to create a small, simple application from your menu bar for both Mac and PC to check your ping for various games. Currently, we've added multiple server support for League of Legends and Overwatch, as well as other additional settings. The Mac and PC builds works different and don't have all the same functionality and settings, but both display ping latency and switching between other games and servers.
+This project was started during MHacks Nano. You can check out the devpost [here](https://devpost.com/software/overload). Our goal was to create a small, simple application from your menu bar for both Mac and PC to check your ping for various games. Currently, we've added multiple server support for League of Legends and Overwatch, as well as other additional settings. The Mac and PC builds works different and don't have all the same functionality and settings, but both display ping latency and switching between other games and servers.
 
 # How to use
 ## Mac
