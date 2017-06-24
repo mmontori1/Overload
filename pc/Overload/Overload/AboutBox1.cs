@@ -21,9 +21,9 @@ namespace Overload
                 "\r\n\r\nRight click the submarine icon in your taskbar to select the game and region." +
                 "\r\n\r\nYour ping is displayed when you hover your mouse over the icon." +
                 "\r\n\r\nThe icon changes color dependent on the value of your ping:\r\n\r\n" +
-                "\tGreen:   Ping < 60\r\n" + 
-                "\tYellow:  60 < Ping < 100\r\n" + 
-                "\tRed:     100 < Ping";
+                "\tGreen:   Ping < 100\r\n" + 
+                "\tYellow:  100 < Ping < 200\r\n" + 
+                "\tRed:     200 < Ping";
         }
 
         #region Assembly Attribute Accessors

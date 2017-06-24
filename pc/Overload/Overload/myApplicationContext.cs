@@ -82,11 +82,11 @@ namespace Overload
                     pings.Enqueue(reply.RoundtripTime);
                     long avgPing = (long)pings.Average();
                     trayIcon.Text = curGame.title + " " + curRegion + ": " + avgPing;
-                    if (avgPing > 100)
+                    if (avgPing > 200)
                     {
                         trayIcon.Icon = Resources.red_sub;
                     }
-                    else if (avgPing > 60)
+                    else if (avgPing > 100)
                     {
                         trayIcon.Icon = Resources.yellow_sub;
                     }
