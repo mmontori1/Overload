@@ -2,9 +2,10 @@
 # platform :ios, '9.0'
 
 target 'Overload' do
-  # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
-  use_frameworks!
-
-  # Pods for Overload
-  pod "PlainPing"
+    # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
+    use_frameworks!
+    
+    # Pods for Overload
+    pod 'PlainPing'
+    pod 'AlecrimAsyncKit', '~> 3.0'
 end

@@ -1,12 +1,15 @@
 PODS:
+  - AlecrimAsyncKit (3.0.1)
   - PlainPing (0.3.1)
 
 DEPENDENCIES:
+  - AlecrimAsyncKit (~> 3.0)
   - PlainPing
 
 SPEC CHECKSUMS:
+  AlecrimAsyncKit: 7060ef6dd971f4116bac1f950227a744e2fb5491
   PlainPing: 3b740d74bc694f4593045b5c5b17ea1275d1920f
 
-PODFILE CHECKSUM: f46a1c2c6221e1834df2f66048d3a7aa9f844f7e
+PODFILE CHECKSUM: b7c395a148840017118fb5656a10a20c5ddd9cdd
 
 COCOAPODS: 1.2.1
