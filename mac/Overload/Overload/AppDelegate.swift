@@ -33,8 +33,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func tryPing(){
         PingService.ping(server: "104.160.131.3", completion: { (latency) in
-          print(latency ?? "error")
+            print(latency ?? "error")
         })
+        
     }
 }
 

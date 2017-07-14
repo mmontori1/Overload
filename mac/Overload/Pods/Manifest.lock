@@ -1,15 +1,22 @@
 PODS:
-  - AlecrimAsyncKit (3.0.1)
   - PlainPing (0.3.1)
 
 DEPENDENCIES:
-  - AlecrimAsyncKit (~> 3.0)
-  - PlainPing
+  - PlainPing (from `git@github.com:naptics/PlainPing.git`, commit `f2f13a898ba64b106ca33e5a5d4d2c9ddde827ad`)
+
+EXTERNAL SOURCES:
+  PlainPing:
+    :commit: f2f13a898ba64b106ca33e5a5d4d2c9ddde827ad
+    :git: git@github.com:naptics/PlainPing.git
+
+CHECKOUT OPTIONS:
+  PlainPing:
+    :commit: f2f13a898ba64b106ca33e5a5d4d2c9ddde827ad
+    :git: git@github.com:naptics/PlainPing.git
 
 SPEC CHECKSUMS:
-  AlecrimAsyncKit: 7060ef6dd971f4116bac1f950227a744e2fb5491
   PlainPing: 3b740d74bc694f4593045b5c5b17ea1275d1920f
 
-PODFILE CHECKSUM: a46cfa47ada842fe9f6f7e654d62fabb12906492
+PODFILE CHECKSUM: 222f6c90e47e465dc7664519b316e205f01990c3
 
 COCOAPODS: 1.2.1

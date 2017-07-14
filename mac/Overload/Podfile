@@ -6,7 +6,7 @@ target 'Overload' do
     use_frameworks!
     
     # Pods for Overload
-#    pod 'SwiftPing', :git => 'git@github.com:ankitthakur/SwiftPing.git', :commit => '48a615bc1da7e3e4cdf86bff5b1b9b025d18e04e'
-    pod 'PlainPing'
-    pod 'AlecrimAsyncKit', '~> 3.0'
+    # pod 'SwiftPing', :git => 'git@github.com:ankitthakur/SwiftPing.git', :commit => '48a615bc1da7e3e4cdf86bff5b1b9b025d18e04e'
+    pod 'PlainPing', :git => 'git@github.com:naptics/PlainPing.git', :commit => 'f2f13a898ba64b106ca33e5a5d4d2c9ddde827ad'
+    # pod 'AlecrimAsyncKit', '~> 3.0'
 end
