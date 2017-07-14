@@ -23,9 +23,18 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     private func initStatusItem() {
+        let editMenuItem = NSMenuItem(title: "Ping", action: #selector(tryPing), keyEquivalent: "")
+        statusItemMenu.addItem(editMenuItem)
+        
         self.statusItem = NSStatusBar.system().statusItem(withLength: NSVariableStatusItemLength)
         statusItem?.image = NSImage(named: "blackSub")
         statusItem?.menu = self.statusItemMenu
+    }
+    
+    func tryPing(){
+        PingService.ping(server: "104.160.131.3", completion: { (latency) in
+          print(latency ?? "error")
+        })
     }
 }
 
