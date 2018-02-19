@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		015476151F1906F900644AF2 /* TimerInvocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015476141F1906F900644AF2 /* TimerInvocation.swift */; };
 		01932FB91F17CC9F0047227A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01932FB81F17CC9F0047227A /* AppDelegate.swift */; };
 		01932FBB1F17CC9F0047227A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01932FBA1F17CC9F0047227A /* ViewController.swift */; };
 		01932FBD1F17CC9F0047227A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 01932FBC1F17CC9F0047227A /* Assets.xcassets */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		015476141F1906F900644AF2 /* TimerInvocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerInvocation.swift; sourceTree = "<group>"; };
 		01932FB51F17CC9F0047227A /* Overload.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Overload.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		01932FB81F17CC9F0047227A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		01932FBA1F17CC9F0047227A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -61,6 +63,7 @@
 		01932FB71F17CC9F0047227A /* Overload */ = {
 			isa = PBXGroup;
 			children = (
+				015476141F1906F900644AF2 /* TimerInvocation.swift */,
 				01932FB81F17CC9F0047227A /* AppDelegate.swift */,
 				01932FBA1F17CC9F0047227A /* ViewController.swift */,
 				01932FBC1F17CC9F0047227A /* Assets.xcassets */,
@@ -214,6 +217,7 @@
 				01932FBB1F17CC9F0047227A /* ViewController.swift in Sources */,
 				01932FB91F17CC9F0047227A /* AppDelegate.swift in Sources */,
 				01932FC81F17CD510047227A /* PingService.swift in Sources */,
+				015476151F1906F900644AF2 /* TimerInvocation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
